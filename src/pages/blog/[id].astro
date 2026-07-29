@@ -1,0 +1,149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={`${post.data.title} | Miluna Cloud Engineering Blog`} description={post.data.description}>
+  <article class="relative py-16 overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Back to blog link -->
+      <div class="mb-8">
+        <a href="/blog" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors group">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Volver a todos los artículos
+        </a>
+      </div>
+
+      <!-- Header -->
+      <header class="mb-12 border-b border-slate-200/80 pb-10">
+        <div class="flex flex-wrap gap-2 mb-6">
+          {post.data.tags.map((tag) => (
+            <span class="px-3 py-1 text-xs font-bold tracking-wider uppercase text-indigo-700 bg-indigo-50 border border-indigo-100 rounded-lg">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
+          {post.data.title}
+        </h1>
+
+        <div class="flex items-center gap-4 text-sm text-slate-600">
+          <div>
+            <span class="text-slate-500">Escrito por</span> <strong class="text-slate-800 font-semibold">{post.data.author}</strong>
+          </div>
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+          <div>
+            <span class="text-slate-500">Publicado el</span> <time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content body -->
+      <div class="prose max-w-none prose-headings:font-bold prose-headings:font-display prose-headings:tracking-tight prose-a:text-indigo-600 hover:prose-a:text-indigo-800 bg-white p-8 sm:p-12 rounded-2xl border border-slate-200/80 shadow-xs">
+        <Content />
+      </div>
+
+      <!-- Footer signoff -->
+      <footer class="mt-16">
+        <div class="p-6 sm:p-8 rounded-2xl bg-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-md">
+          <div>
+            <h3 class="font-bold text-lg text-white mb-1">Servicios de Consultoría e Ingeniería</h3>
+            <p class="text-sm text-slate-300 leading-relaxed max-w-lg">
+              ¿Necesitas ayuda arquitectónica especializada en Microservicios, Cloud (AWS/K8s) o Agentes de IA? Hablemos.
+            </p>
+          </div>
+          <a href="mailto:miguel.luna@milunacloud.com" class="px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-colors text-center whitespace-nowrap shadow-sm">
+            Contactar
+          </a>
+        </div>
+      </footer>
+    </div>
+  </article>
+</Layout>
+
+<style is:global>
+  /* Base Prose Styles for Light Mode */
+  .prose h1, .prose h2, .prose h3, .prose h4 {
+    color: #0f172a; /* text-slate-900 */
+    margin-top: 1.75em;
+    margin-bottom: 0.5em;
+  }
+  .prose h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    border-bottom: 1px solid #e2e8f0; /* border-slate-200 */
+    padding-bottom: 0.5rem;
+  }
+  .prose h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  .prose p {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+    line-height: 1.75;
+    color: #334155; /* text-slate-700 */
+  }
+  .prose ul, .prose ol {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+    padding-left: 1.625em;
+    list-style-type: disc;
+    color: #334155;
+  }
+  .prose li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  .prose blockquote {
+    font-style: italic;
+    border-left: 4px solid #4f46e5; /* border-indigo-600 */
+    background-color: #f8fafc;
+    padding: 1em 1.5em;
+    border-radius: 0.5rem;
+    margin: 1.5em 0;
+    color: #1e293b;
+  }
+  .prose strong {
+    color: #0f172a;
+    font-weight: 700;
+  }
+  .prose code {
+    color: #0f172a;
+    background-color: #f1f5f9;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+  .prose pre {
+    background-color: #0f172a;
+    color: #f8fafc;
+    border: 1px solid #1e293b;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 1.5em 0;
+  }
+  .prose pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+</style>
