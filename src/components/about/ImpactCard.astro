@@ -1,0 +1,64 @@
+---
+import type { ImpactCardItem } from '../../data/impactCards';
+
+interface Props {
+  card: ImpactCardItem;
+}
+
+const { card } = Astro.props;
+
+const colorMap = {
+  emerald: {
+    iconBg: 'bg-emerald-50',
+    iconText: 'text-emerald-600',
+    badgeBg: 'bg-emerald-50',
+    badgeText: 'text-emerald-700',
+    badgeBorder: 'border-emerald-100'
+  },
+  indigo: {
+    iconBg: 'bg-indigo-50',
+    iconText: 'text-indigo-600',
+    badgeBg: 'bg-indigo-50',
+    badgeText: 'text-indigo-700',
+    badgeBorder: 'border-indigo-100'
+  },
+  purple: {
+    iconBg: 'bg-purple-50',
+    iconText: 'text-purple-600',
+    badgeBg: 'bg-purple-50',
+    badgeText: 'text-purple-700',
+    badgeBorder: 'border-purple-100'
+  },
+  blue: {
+    iconBg: 'bg-blue-50',
+    iconText: 'text-blue-600',
+    badgeBg: 'bg-blue-50',
+    badgeText: 'text-blue-700',
+    badgeBorder: 'border-blue-100'
+  }
+};
+
+const styles = colorMap[card.badgeColor];
+---
+
+<div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+  <div>
+    <div class="flex items-center justify-between mb-4">
+      <span class={`p-2 rounded-xl ${styles.iconBg} ${styles.iconText}`}>
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" set:html={card.iconSvg} />
+      </span>
+      <span class={`text-[10px] font-bold uppercase tracking-wider ${styles.badgeText} ${styles.badgeBg} px-2 py-0.5 rounded border ${styles.badgeBorder}`}>
+        {card.category}
+      </span>
+    </div>
+    <h3 class="font-bold text-slate-900 text-lg mb-2">{card.title}</h3>
+    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+      {card.description}
+    </p>
+  </div>
+  <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
+    {card.tags.map((tag) => (
+      <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">{tag}</span>
+    ))}
+  </div>
+</div>

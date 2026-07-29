@@ -1,5 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AboutHeader from '../components/about/AboutHeader.astro';
+import BioSection from '../components/about/BioSection.astro';
+import ImpactGrid from '../components/about/ImpactGrid.astro';
+import ContactCTA from '../components/common/ContactCTA.astro';
 ---
 
 <Layout title="Sobre Miguel Ángel Luna | Miluna Cloud Services" description="Conoce a Miguel Ángel Luna, especialista en Microservicios (Spring Boot & FastAPI), Arquitectura Cloud (AWS & K8s), Agentes de IA y FinOps.">
@@ -9,198 +13,15 @@ import Layout from '../layouts/Layout.astro';
     <div class="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-purple-50/60 rounded-full blur-3xl -z-10"></div>
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Title section -->
-      <div class="mb-12 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 block">Perfil Profesional</span>
-          <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-2">Miguel Ángel Luna</h1>
-          <p class="text-lg text-slate-600 font-medium">Senior Software Engineer & Consultor de Sistemas Distribuidos Cloud</p>
-        </div>
-
-        <!-- Prominent LinkedIn Link Button -->
-        <a 
-          href="https://www.linkedin.com/in/miluna94/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-[#0A66C2] hover:bg-[#084e96] text-white font-bold text-sm shadow-sm transition-all hover:shadow-md self-start md:self-auto shrink-0"
-        >
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-          </svg>
-          Ver Perfil Completo en LinkedIn
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
-      </div>
-
-      <!-- About bio overview -->
-      <div class="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/80 shadow-xs mb-16 space-y-4 text-slate-700 leading-relaxed">
-        <p class="text-base sm:text-lg">
-          Soy Miguel Ángel Luna, Ingeniero de Software centrado en el desarrollo de <strong class="text-slate-900 font-semibold">microservicios backend</strong> (Spring Boot & FastAPI), diseño de <strong class="text-slate-900 font-semibold">sistemas distribuidos cloud</strong> (AWS & Kubernetes) y resolución acelerada de incidencias operativas mediante <strong class="text-slate-900 font-semibold">Agentes de IA y Servidores MCP</strong>.
-        </p>
-        <p class="text-sm sm:text-lg text-slate-600">
-          Cuento con amplia experiencia en entornos de alta resiliencia (FinTech, Automoción Cloud), especializándome en arquitecturas de cero margen de error, migraciones en caliente sin caída de servicio y optimizaciones de costes de infraestructura (FinOps).
-        </p>
-      </div>
-
-      <!-- Fused Impact & Experience Section -->
-      <div class="mb-16">
-        <div class="flex items-center justify-between mb-8">
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 flex items-center gap-3">
-            <span class="w-2 h-6 bg-indigo-600 rounded-full"></span>
-            Impacto Técnico & Logros en Producción
-          </h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Card 1 -->
-          <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="p-2 rounded-xl bg-emerald-50 text-emerald-600">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-                </span>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Escala FinTech</span>
-              </div>
-              <h3 class="font-bold text-slate-900 text-lg mb-2">Microservicios FinTech a Escala Masiva</h3>
-              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-                Desarrollo e implementación de microservicios con Spring Boot y FastAPI en plataformas financieras procesando millones de peticiones mensuales a escala global.
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">Spring Boot</span>
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">FastAPI</span>
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">High Throughput</span>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="p-2 rounded-xl bg-indigo-50 text-indigo-600">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                </span>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-100">Automatización IA</span>
-              </div>
-              <h3 class="font-bold text-slate-900 text-lg mb-2">Agentes de IA & Servidores MCP</h3>
-              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-                Creación de Agentes de IA y servidores MCP integrados con scripts para diagnosticar y solucionar decenas de incidencias críticas en producción en tiempo récord.
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">AI Agents</span>
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">MCP Servers</span>
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">Incident Automation</span>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="p-2 rounded-xl bg-purple-50 text-purple-600">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
-                </span>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-100">Base de Datos</span>
-              </div>
-              <h3 class="font-bold text-slate-900 text-lg mb-2">Migraciones RDS Aurora Zero-Downtime</h3>
-              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-                Planificación y ejecución de migraciones de datos masivos en producción sobre RDS Aurora sin interrumpir el servicio ni generar degradación.
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">RDS Aurora</span>
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">Zero-Downtime</span>
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">CDC & Replication</span>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="p-2 rounded-xl bg-blue-50 text-blue-600">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-                </span>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">Infraestructura</span>
-              </div>
-              <h3 class="font-bold text-slate-900 text-lg mb-2">Orquestación Cloud en AWS & K8s</h3>
-              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-                Despliegues en producción sobre Kubernetes (K8s), AWS ECS y Lambda con pipelines de eventos de alta velocidad (Kafka, SQS, EventBridge).
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">Kubernetes</span>
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">AWS ECS/Lambda</span>
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">Apache Kafka</span>
-            </div>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="p-2 rounded-xl bg-purple-50 text-purple-600">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </span>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-100">FinOps</span>
-              </div>
-              <h3 class="font-bold text-slate-900 text-lg mb-2">Optimización FinOps ($$$ Ahorros)</h3>
-              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-                Auditoría y re-arquitectura de cómputo y almacenamiento logrando ahorros comprobados de miles de dólares al mes en factura cloud.
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">Cost Optimization</span>
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">Spot Instances</span>
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">Monthly Savings</span>
-            </div>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="p-2 rounded-xl bg-emerald-50 text-emerald-600">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V8a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                </span>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Pagos & DR</span>
-              </div>
-              <h3 class="font-bold text-slate-900 text-lg mb-2">Pagos Stripe & Recuperación ante Desastres</h3>
-              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-                Integración de Stripe y pasarelas con lógica idempotente, máquinas de estado sin bugs y diseño de planes Disaster Recovery (DR).
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">Stripe Integration</span>
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">State Machines</span>
-              <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">Disaster Recovery</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Contact Section -->
-      <div id="contact" class="pt-4">
-        <div class="p-8 sm:p-10 rounded-3xl bg-slate-900 text-white relative shadow-lg">
-          <h2 class="text-2xl sm:text-3xl font-extrabold mb-4">Hablemos de tu Infraestructura o Microservicios</h2>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
-            ¿Necesitas desarrollo backend senior en Spring Boot o FastAPI, optimización de arquitectura cloud en AWS/K8s o Agentes de IA? Contáctame.
-          </p>
-          <div class="space-y-4">
-            <a href="mailto:miguel.luna@milunacloud.com" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-colors shadow-md">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Contactar
-            </a>
-            <p class="text-xs text-slate-400">
-              Respuesta habitual en menos de 24 horas. Basado en Europa, servicio a clientes globales.
-            </p>
-          </div>
-        </div>
+      <AboutHeader />
+      <BioSection />
+      <ImpactGrid />
+      <div id="contact">
+        <ContactCTA 
+          title="Hablemos de tu Infraestructura o Microservicios"
+          badge=""
+          description="¿Necesitas desarrollo backend senior en Spring Boot o FastAPI, optimización de arquitectura cloud en AWS/K8s o Agentes de IA? Contáctame."
+        />
       </div>
     </div>
   </div>

@@ -1,0 +1,52 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-slate-50 border-t border-slate-200/80 py-12 mt-20">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-7 h-7 rounded-lg bg-slate-900 text-white font-bold text-sm flex items-center justify-center font-display">
+            M
+          </span>
+          <span class="font-bold text-lg tracking-tight text-slate-900">
+            Miluna<span class="text-indigo-600 font-semibold">Cloud</span>
+          </span>
+        </div>
+        <p class="text-slate-600 text-sm max-w-sm leading-relaxed">
+          Consultoría y arquitectura de sistemas distribuidos en la nube (Kubernetes, AWS ECS, Lambda, Kafka).
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Especialidades</h3>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li><a href="/about" class="hover:text-indigo-600 transition-colors">Microservicios Cloud</a></li>
+          <li><a href="/about" class="hover:text-indigo-600 transition-colors">Agentes IA & MCP</a></li>
+          <li><a href="/about" class="hover:text-indigo-600 transition-colors">Pasarelas de pagos</a></li>
+          <li><a href="/about" class="hover:text-indigo-600 transition-colors">Migraciones y Optimización de Costes</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Navegación</h3>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li><a href="/" class="hover:text-indigo-600 transition-colors">Inicio</a></li>
+          <li><a href="/about" class="hover:text-indigo-600 transition-colors">Sobre Miguel Ángel</a></li>
+          <li><a href="/blog" class="hover:text-indigo-600 transition-colors">Engineering Blog</a></li>
+          <li><a href="mailto:miluna1994@gmail.com" class="hover:text-indigo-600 transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-slate-500">
+        &copy; {currentYear} Miluna Cloud Services. Todos los derechos reservados.
+      </p>
+      <div class="flex gap-6 text-xs text-slate-500 font-medium">
+        <span>Consultoría Senior en Sistemas Distribuidos Cloud por Miguel Ángel Luna</span>
+      </div>
+    </div>
+  </div>
+</footer>
