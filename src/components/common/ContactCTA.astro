@@ -1,4 +1,6 @@
 ---
+import { CONTACT_EMAIL } from '../../data/contact';
+
 interface Props {
   title?: string;
   subtitle?: string;
@@ -14,7 +16,7 @@ const {
   badge = "¿Tienes un proyecto Backend, Cloud o de Agentes de IA?",
   description = "Desde microservicios en Spring Boot & FastAPI desplegados en AWS/Kubernetes, hasta migraciones sin caída en RDS Aurora y automatizaciones avanzadas con Agentes de IA.",
   buttonText = "Contactar",
-  email = "miluna1994@gmail.com",
+  email = CONTACT_EMAIL,
   class: className = "py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
 } = Astro.props;
 ---

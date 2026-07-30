@@ -1,4 +1,5 @@
 ---
+import { MAILTO_CONTACT } from '../../data/contact';
 ---
 
 <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-200/80 transition-colors">
@@ -16,7 +17,7 @@
       <a href="/" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Inicio</a>
       <a href="/about" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Sobre Mí</a>
       <a href="/blog" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Blog</a>
-      <a href="mailto:miluna1994@gmail.com" class="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-slate-900 hover:bg-indigo-600 rounded-xl transition-all shadow-xs hover:shadow-md">
+      <a href={MAILTO_CONTACT} class="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-slate-900 hover:bg-indigo-600 rounded-xl transition-all shadow-xs hover:shadow-md">
         Contacto
       </a>
     </nav>
@@ -34,7 +35,7 @@
     <a href="/" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">Inicio</a>
     <a href="/about" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">Sobre Mí</a>
     <a href="/blog" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">Blog</a>
-    <a href="mailto:miluna1994@gmail.com" class="block text-center px-4 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 transition-colors">
+    <a href={MAILTO_CONTACT} class="block text-center px-4 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 transition-colors">
       Contacto
     </a>
   </div>

@@ -1,4 +1,6 @@
 ---
+import { MAILTO_CONTACT } from '../../data/contact';
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -35,7 +37,7 @@ const currentYear = new Date().getFullYear();
           <li><a href="/" class="hover:text-indigo-600 transition-colors">Inicio</a></li>
           <li><a href="/about" class="hover:text-indigo-600 transition-colors">Sobre Miguel Ángel</a></li>
           <li><a href="/blog" class="hover:text-indigo-600 transition-colors">Engineering Blog</a></li>
-          <li><a href="mailto:miluna1994@gmail.com" class="hover:text-indigo-600 transition-colors">Contacto</a></li>
+          <li><a href={MAILTO_CONTACT} class="hover:text-indigo-600 transition-colors">Contacto</a></li>
         </ul>
       </div>
     </div>
