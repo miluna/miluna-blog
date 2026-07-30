@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ContactCTA from '../../components/common/ContactCTA.astro';
 import { getCollection, render } from 'astro:content';
 
 export const prerender = true;
@@ -61,17 +62,12 @@ const { Content } = await render(post);
 
       <!-- Footer signoff -->
       <footer class="mt-16">
-        <div class="p-6 sm:p-8 rounded-2xl bg-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-md">
-          <div>
-            <h3 class="font-bold text-lg text-white mb-1">Servicios de Consultoría e Ingeniería</h3>
-            <p class="text-sm text-slate-300 leading-relaxed max-w-lg">
-              ¿Necesitas ayuda arquitectónica especializada en Microservicios, Cloud (AWS/K8s) o Agentes de IA? Hablemos.
-            </p>
-          </div>
-          <a href="mailto:miluna1994@gmail.com" class="px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-colors text-center whitespace-nowrap shadow-sm">
-            Contactar
-          </a>
-        </div>
+        <ContactCTA 
+          class=""
+          badge=""
+          title="Servicios de Consultoría e Ingeniería"
+          description="¿Necesitas ayuda arquitectónica especializada en Microservicios, Cloud (AWS/K8s) o Agentes de IA? Hablemos."
+        />
       </footer>
     </div>
   </article>

@@ -1,0 +1,42 @@
+---
+interface Props {
+  tags: string[];
+  totalPosts: number;
+}
+
+const { tags, totalPosts } = Astro.props;
+---
+
+<div class="space-y-6">
+  <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Filtrar por Tema</h2>
+    <div class="flex flex-wrap lg:flex-col gap-2" id="tag-filters-container">
+      <button 
+        type="button"
+        data-tag="all"
+        class="tag-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 text-white cursor-pointer transition-all text-center lg:text-left block w-full"
+      >
+        Todos los Temas ({totalPosts})
+      </button>
+      {tags.map((tag) => (
+        <button 
+          type="button"
+          data-tag={tag}
+          class="tag-filter-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200 cursor-pointer transition-all text-center lg:text-left block w-full"
+        >
+          {tag}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <div class="p-6 rounded-2xl bg-slate-900 text-white shadow-sm">
+    <h3 class="text-sm font-bold text-white mb-2">¿Asesoría Especializada?</h3>
+    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+      Optimización de infraestructura, compiladores C++, sistemas distribuidos y arquitectura en la nube.
+    </p>
+    <a href="mailto:miluna1994@gmail.com" class="inline-block text-xs font-bold text-indigo-300 hover:text-white transition-colors">
+      Contactar &rarr;
+    </a>
+  </div>
+</div>
