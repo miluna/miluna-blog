@@ -1,23 +1,23 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import BlogHeader from '../../components/blog/BlogHeader.astro';
-import BlogSidebar from '../../components/blog/BlogSidebar.astro';
-import BlogPostCard from '../../components/blog/BlogPostCard.astro';
-import { translations } from '../../data/translations';
+import Layout from '../../../layouts/Layout.astro';
+import BlogHeader from '../../../components/blog/BlogHeader.astro';
+import BlogSidebar from '../../../components/blog/BlogSidebar.astro';
+import BlogPostCard from '../../../components/blog/BlogPostCard.astro';
+import { translations } from '../../../data/translations';
 
-const lang = 'en';
+const lang = 'es';
 const t = translations[lang];
 
 const posts = await getCollection('blog');
-// Filter for English posts only
-const enPosts = posts.filter(post => post.id.startsWith('en/'));
+// Filter for Spanish posts only
+const esPosts = posts.filter(post => post.id.startsWith('es/'));
 
 // Sort posts by publication date descending
-const sortedPosts = enPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const sortedPosts = esPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 // Collect all unique tags for quick filtering links
-const allTags = [...new Set(enPosts.flatMap(post => post.data.tags))];
+const allTags = [...new Set(esPosts.flatMap(post => post.data.tags))];
 
 const description = t.blogDescription;
 ---
@@ -25,13 +25,13 @@ const description = t.blogDescription;
 <Layout title="Engineering Blog | Miluna Cloud Services" description={description}>
   <div class="relative py-16 overflow-hidden">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <BlogHeader lang={lang} title="Engineering Blog" badge="Technical Posts" description={description} />
+      <BlogHeader lang={lang} title="Engineering Blog" badge="Publicaciones Técnicas" description={description} />
 
       <!-- Main Layout: Sidebar Tags + Articles list -->
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
         <!-- Sidebar tags -->
         <div class="lg:col-span-1">
-          <BlogSidebar lang={lang} tags={allTags} totalPosts={enPosts.length} />
+          <BlogSidebar lang={lang} tags={allTags} totalPosts={esPosts.length} />
         </div>
 
         <!-- Articles list -->

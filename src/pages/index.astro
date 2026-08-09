@@ -7,15 +7,38 @@ import RecentPosts from '../components/home/RecentPosts.astro';
 import ContactCTA from '../components/common/ContactCTA.astro';
 
 const posts = await getCollection('blog');
-// Sort posts by pubDate descending, take the top 3
-const recentPosts = posts
+// Filter for English posts and sort by pubDate descending, take the top 3
+const enPosts = posts.filter(post => post.id.startsWith('en/'));
+const recentPosts = enPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 ---
 
-<Layout title="Miluna Cloud | Microservicios (Spring Boot & FastAPI), AWS & Kubernetes">
-  <HeroSection />
-  <CapabilitiesGrid />
-  <RecentPosts posts={recentPosts} />
-  <ContactCTA />
+<Layout title="Miluna Cloud | Microservices (Spring Boot & FastAPI), AWS & Kubernetes" description="Miluna Cloud Services is the consulting page of Miguel Ángel Luna, Senior Software Engineer specialized in Cloud Distributed Systems on AWS and Kubernetes (K8s, ECS, Lambda, Kafka, RDS Aurora).">
+  <!-- Client-side browser language detection script -->
+  <script is:inline>
+    (function() {
+      const storedLang = localStorage.getItem('preferred-lang');
+      if (storedLang === 'en') {
+        return;
+      }
+      if (storedLang === 'es') {
+        window.location.replace('/es/');
+        return;
+      }
+      // Detect browser language
+      const browserLang = navigator.language || '';
+      if (browserLang.startsWith('es')) {
+        localStorage.setItem('preferred-lang', 'es');
+        window.location.replace('/es/');
+      } else {
+        localStorage.setItem('preferred-lang', 'en');
+      }
+    })();
+  </script>
+
+  <HeroSection lang="en" />
+  <CapabilitiesGrid lang="en" />
+  <RecentPosts lang="en" posts={recentPosts} />
+  <ContactCTA lang="en" />
 </Layout>

@@ -1,21 +1,31 @@
 ---
 import { servicesData } from '../../data/services';
+import { translations, type MultilingualProps } from '../../data/translations';
 import ServiceCard from '../common/ServiceCard.astro';
+
+interface Props extends MultilingualProps {}
+
+const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
+const t = translations[lang];
 ---
 
 <section class="py-20 border-y border-slate-200/80 bg-slate-50/50">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 block">Dominio Técnico</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Especialización & Capacidades Core</h2>
+      <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 block">
+        {t.technicalDomain}
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+        {t.specializationHeader}
+      </h2>
       <p class="text-slate-600 max-w-2xl mx-auto mt-3 text-sm sm:text-base">
-        Ingeniería de vanguardia enfocada en microservicios resilientes, infraestructura distribuida y automatización avanzada con IA.
+        {t.capabilitiesDesc}
       </p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {servicesData.map((service) => (
-        <ServiceCard service={service} />
+        <ServiceCard service={service} lang={lang} />
       ))}
     </div>
   </div>

@@ -1,24 +1,28 @@
 ---
 import { MAILTO_CONTACT } from '../../data/contact';
+import { translations, type MultilingualProps } from '../../data/translations';
 
-interface Props {
+interface Props extends MultilingualProps {
   tags: string[];
   totalPosts: number;
 }
 
-const { tags, totalPosts } = Astro.props;
+const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en', tags, totalPosts } = Astro.props;
+const t = translations[lang];
 ---
 
 <div class="space-y-6">
   <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
-    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Filtrar por Tema</h2>
+    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">
+      {t.filterByTopic}
+    </h2>
     <div class="flex flex-wrap lg:flex-col gap-2" id="tag-filters-container">
       <button 
         type="button"
         data-tag="all"
         class="tag-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 text-white cursor-pointer transition-all text-center lg:text-left block w-full"
       >
-        Todos los Temas ({totalPosts})
+        {t.allTopics} ({totalPosts})
       </button>
       {tags.map((tag) => (
         <button 
@@ -33,12 +37,14 @@ const { tags, totalPosts } = Astro.props;
   </div>
 
   <div class="p-6 rounded-2xl bg-slate-900 text-white shadow-sm">
-    <h3 class="text-sm font-bold text-white mb-2">¿Asesoría Especializada?</h3>
+    <h3 class="text-sm font-bold text-white mb-2">
+      {t.specializedConsulting}
+    </h3>
     <p class="text-xs text-slate-300 leading-relaxed mb-4">
-      Optimización de infraestructura, compiladores C++, sistemas distribuidos y arquitectura en la nube.
+      {t.consultingAdDesc}
     </p>
     <a href={MAILTO_CONTACT} class="inline-block text-xs font-bold text-indigo-300 hover:text-white transition-colors">
-      Contactar &rarr;
+      {t.contactMeArrow}
     </a>
   </div>
 </div>

@@ -1,4 +1,11 @@
 ---
+import { translations, type MultilingualProps } from '../data/translations';
+
+interface Props extends MultilingualProps {}
+
+const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
+const t = translations[lang];
+
 // Client company logos & tech stack tailored to Cloud, Frameworks, AI & Automotive
 const clientLogos = [
   { name: "Juguetronica", category: "E-commerce & Marketplaces", icon: "juguetronica" },  
@@ -8,7 +15,7 @@ const clientLogos = [
   { name: "Daimler", category: "Automotive", icon: "daimler" },
   { name: "Sopra HR", category: "HR Tech", icon: "sopra-hr" },
   { name: "Oru Studio", category: "Video Games & Media", icon: "oru" },
-  { name: "Aechelon Technology", category: "Government & Defense Simulators", icon: "aechelon" },    
+  { name: "Aechelon Technology", category: "Government & Defense Simulators", icon: "aechelon" },
 ];
 
 // Duplicate array to ensure infinite loop seamlessly
@@ -18,7 +25,7 @@ const doubleLogos = [...clientLogos, ...clientLogos];
 <div class="w-full pt-10 pb-4">
   <div class="text-center mb-6">
     <p class="text-[11px] font-bold tracking-widest uppercase text-slate-600">
-      Empresas & Proyectos Destacados
+      {t.featuredCompanies}
     </p>
   </div>
 

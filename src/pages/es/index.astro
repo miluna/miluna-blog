@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import HeroSection from '../../components/home/HeroSection.astro';
+import CapabilitiesGrid from '../../components/home/CapabilitiesGrid.astro';
+import RecentPosts from '../../components/home/RecentPosts.astro';
+import ContactCTA from '../../components/common/ContactCTA.astro';
+
+const posts = await getCollection('blog');
+// Filter for Spanish posts and sort by pubDate descending, take the top 3
+const esPosts = posts.filter(post => post.id.startsWith('es/'));
+const recentPosts = esPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<Layout title="Miluna Cloud | Microservicios (Spring Boot & FastAPI), AWS & Kubernetes">
+  <!-- Client-side preferred-lang sync -->
+  <script is:inline>
+    (function() {
+      localStorage.setItem('preferred-lang', 'es');
+    })();
+  </script>
+
+  <HeroSection lang="es" />
+  <CapabilitiesGrid lang="es" />
+  <RecentPosts lang="es" posts={recentPosts} />
+  <ContactCTA lang="es" />
+</Layout>

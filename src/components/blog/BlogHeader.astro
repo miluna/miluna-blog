@@ -1,21 +1,30 @@
 ---
-interface Props {
+import { translations, type MultilingualProps } from '../../data/translations';
+
+interface Props extends MultilingualProps {
   title?: string;
   badge?: string;
   description?: string;
 }
 
 const {
-  title = "Engineering Blog",
-  badge = "Publicaciones Técnicas",
-  description = "Perspectivas de ingeniería, análisis en profundidad y reflexiones sobre escalabilidad, cómputo distribuido y sistemas de misión crítica."
+  lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en',
+  title,
+  badge,
+  description,
 } = Astro.props;
+
+const t = translations[lang];
+
+const displayTitle = title || t.blogHeaderTitle;
+const displayBadge = badge || t.blogHeaderBadge;
+const displayDescription = description || t.blogHeaderDesc;
 ---
 
 <div class="text-center max-w-3xl mx-auto mb-16">
-  <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 block">{badge}</span>
-  <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">{title}</h1>
+  <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 block">{displayBadge}</span>
+  <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">{displayTitle}</h1>
   <p class="text-lg text-slate-600">
-    {description}
+    {displayDescription}
   </p>
 </div>

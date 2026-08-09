@@ -1,10 +1,28 @@
 ---
 import { MAILTO_CONTACT } from '../../data/contact';
+import { translations } from '../../data/translations';
+
+const currentPath = Astro.url.pathname;
+const isSpanish = currentPath.startsWith('/es') || currentPath.includes('/es/');
+const lang = isSpanish ? 'es' : 'en';
+const t = translations[lang];
+
+// Compute EN and ES versions of the current page URL for language switcher
+let enPath = currentPath;
+let esPath = currentPath;
+
+if (isSpanish) {
+  // Strip '/es' or '/es/' from the start of the path
+  enPath = currentPath.replace(/^\/es(\/|$)/, '/');
+} else {
+  // Add '/es' prefix
+  esPath = currentPath === '/' ? '/es/' : `/es${currentPath}`;
+}
 ---
 
 <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-200/80 transition-colors">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2.5 group">
+    <a href={isSpanish ? "/es/" : "/"} class="flex items-center gap-2.5 group">
       <span class="w-8 h-8 rounded-lg bg-slate-900 text-white font-bold font-display flex items-center justify-center shadow-sm group-hover:bg-indigo-600 transition-colors">
         M
       </span>
@@ -14,16 +32,30 @@ import { MAILTO_CONTACT } from '../../data/contact';
     </a>
 
     <nav class="hidden md:flex items-center gap-8">
-      <a href="/" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Inicio</a>
-      <a href="/about" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Sobre Mí</a>
-      <a href="/blog" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Blog</a>
+      <a href={isSpanish ? "/es/" : "/"} class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+        {t.home}
+      </a>
+      <a href={isSpanish ? "/es/about" : "/about"} class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+        {t.aboutMe}
+      </a>
+      <a href={isSpanish ? "/es/blog" : "/blog"} class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+        {t.blog}
+      </a>
+
+      <!-- Language Selector -->
+      <div class="flex items-center gap-2 border-l border-slate-200 pl-4 h-5">
+        <a href={enPath} data-lang-btn="en" class={`text-xs font-bold transition-colors ${!isSpanish ? 'text-indigo-600 font-extrabold' : 'text-slate-400 hover:text-slate-600'}`}>EN</a>
+        <span class="text-slate-300 text-xs">|</span>
+        <a href={esPath} data-lang-btn="es" class={`text-xs font-bold transition-colors ${isSpanish ? 'text-indigo-600 font-extrabold' : 'text-slate-400 hover:text-slate-600'}`}>ES</a>
+      </div>
+
       <a href={MAILTO_CONTACT} class="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-slate-900 hover:bg-indigo-600 rounded-xl transition-all shadow-xs hover:shadow-md">
-        Contacto
+        {t.contact}
       </a>
     </nav>
 
     <!-- Mobile Navigation Menu Toggle button -->
-    <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none" aria-label="Abrir menú">
+    <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none" aria-label={isSpanish ? "Abrir menú" : "Open menu"}>
       <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
       </svg>
@@ -32,11 +64,26 @@ import { MAILTO_CONTACT } from '../../data/contact';
 
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white/95 backdrop-blur-lg px-4 pt-2 pb-4 space-y-2">
-    <a href="/" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">Inicio</a>
-    <a href="/about" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">Sobre Mí</a>
-    <a href="/blog" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">Blog</a>
+    <a href={isSpanish ? "/es/" : "/"} class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+      {t.home}
+    </a>
+    <a href={isSpanish ? "/es/about" : "/about"} class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+      {t.aboutMe}
+    </a>
+    <a href={isSpanish ? "/es/blog" : "/blog"} class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+      {t.blog}
+    </a>
+
+    <!-- Mobile Language Switcher -->
+    <div class="flex items-center gap-4 px-3 py-2 border-t border-slate-100 pt-3">
+      <span class="text-xs font-semibold text-slate-500">{t.language}</span>
+      <a href={enPath} data-lang-btn="en" class={`text-xs font-bold transition-colors ${!isSpanish ? 'text-indigo-600 font-extrabold' : 'text-slate-400 hover:text-slate-600'}`}>EN (English)</a>
+      <span class="text-slate-300 text-xs">|</span>
+      <a href={esPath} data-lang-btn="es" class={`text-xs font-bold transition-colors ${isSpanish ? 'text-indigo-600 font-extrabold' : 'text-slate-400 hover:text-slate-600'}`}>ES (Español)</a>
+    </div>
+
     <a href={MAILTO_CONTACT} class="block text-center px-4 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 transition-colors">
-      Contacto
+      {t.contact}
     </a>
   </div>
 </header>
@@ -53,5 +100,15 @@ import { MAILTO_CONTACT } from '../../data/contact';
     } else {
       icon?.setAttribute('d', 'M6 18L18 6M6 6l12 12');
     }
+  });
+
+  // Save selected language to localStorage on click
+  document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selectedLang = btn.getAttribute('data-lang-btn');
+      if (selectedLang) {
+        localStorage.setItem('preferred-lang', selectedLang);
+      }
+    });
   });
 </script>
