@@ -1,10 +1,9 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { translations } from '../../data/translations';
+import { translations, type MultilingualProps } from '../../data/translations';
 
-interface Props {
+interface Props extends MultilingualProps {
   posts: CollectionEntry<'blog'>[];
-  lang?: 'en' | 'es';
 }
 
 const { posts, lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;

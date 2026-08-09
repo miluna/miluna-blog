@@ -1,17 +1,12 @@
 ---
-import { servicesData, servicesDataEn } from '../../data/services';
-import { translations } from '../../data/translations';
+import { servicesData } from '../../data/services';
+import { translations, type MultilingualProps } from '../../data/translations';
 import ServiceCard from '../common/ServiceCard.astro';
 
-interface Props {
-  lang?: 'en' | 'es';
-}
+interface Props extends MultilingualProps {}
 
 const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
-const isSpanish = lang === 'es';
 const t = translations[lang];
-
-const items = isSpanish ? servicesData : servicesDataEn;
 ---
 
 <section class="py-20 border-y border-slate-200/80 bg-slate-50/50">
@@ -29,8 +24,8 @@ const items = isSpanish ? servicesData : servicesDataEn;
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {items.map((service) => (
-        <ServiceCard service={service} />
+      {servicesData.map((service) => (
+        <ServiceCard service={service} lang={lang} />
       ))}
     </div>
   </div>

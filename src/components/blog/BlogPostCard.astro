@@ -1,9 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { translations } from '../../data/translations';
+import { translations, type MultilingualProps } from '../../data/translations';
 
-interface Props {
-  lang?: 'en' | 'es';
+interface Props extends MultilingualProps {
   post: CollectionEntry<'blog'>;
 }
 

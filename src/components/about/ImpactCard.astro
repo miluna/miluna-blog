@@ -1,11 +1,15 @@
 ---
 import type { ImpactCardItem } from '../../data/impactCards';
+import { translations, type Lang } from '../../data/translations';
 
 interface Props {
   card: ImpactCardItem;
+  lang?: Lang;
 }
 
-const { card } = Astro.props;
+const { card, lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
+const t = translations[lang];
+const localizedCard = t.cards[card.id as keyof typeof t.cards];
 
 const colorMap = {
   emerald: {
@@ -48,12 +52,12 @@ const styles = colorMap[card.badgeColor];
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" set:html={card.iconSvg} />
       </span>
       <span class={`text-[10px] font-bold uppercase tracking-wider ${styles.badgeText} ${styles.badgeBg} px-2 py-0.5 rounded border ${styles.badgeBorder}`}>
-        {card.category}
+        {localizedCard.category}
       </span>
     </div>
-    <h3 class="font-bold text-slate-900 text-lg mb-2">{card.title}</h3>
+    <h3 class="font-bold text-slate-900 text-lg mb-2">{localizedCard.title}</h3>
     <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-      {card.description}
+      {localizedCard.description}
     </p>
   </div>
   <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">

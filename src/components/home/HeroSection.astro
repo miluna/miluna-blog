@@ -1,11 +1,9 @@
 ---
 import LogoCarousel from '../LogoCarousel.astro';
 import { MAILTO_CONTACT } from '../../data/contact';
-import { translations } from '../../data/translations';
+import { translations, type MultilingualProps } from '../../data/translations';
 
-interface Props {
-  lang?: 'en' | 'es';
-}
+interface Props extends MultilingualProps {}
 
 const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
 const isSpanish = lang === 'es';

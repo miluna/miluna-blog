@@ -1,11 +1,16 @@
 ---
 import type { ServiceItem } from '../../data/services';
+import { translations, type Lang } from '../../data/translations';
 
 interface Props {
   service: ServiceItem;
+  lang?: Lang;
 }
 
-const { service } = Astro.props;
+const { service, lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
+const isSpanish = lang === 'es';
+const t = translations[lang];
+const localizedService = t.services[service.id as keyof typeof t.services];
 
 const colorMap = {
   emerald: {
@@ -31,6 +36,7 @@ const colorMap = {
 };
 
 const styles = colorMap[service.badgeColor];
+const finalHref = isSpanish ? `/es${service.linkHref}` : service.linkHref;
 ---
 
 <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex flex-col justify-between">
@@ -38,10 +44,10 @@ const styles = colorMap[service.badgeColor];
     <div class={`w-9 h-9 rounded-lg ${styles.bg} ${styles.text} flex items-center justify-center mb-4`}>
       <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" set:html={service.iconSvg} />
     </div>
-    <h3 class="font-bold text-slate-900 text-base mb-1">{service.title}</h3>
-    <p class="text-slate-600 text-xs leading-relaxed">{service.description}</p>
+    <h3 class="font-bold text-slate-900 text-base mb-1">{localizedService.title}</h3>
+    <p class="text-slate-600 text-xs leading-relaxed">{localizedService.description}</p>
   </div>
-  <a href={service.linkHref} class={`mt-4 text-xs font-bold ${styles.text} ${styles.hoverText}`}>
-    {service.linkText}
+  <a href={finalHref} class={`mt-4 text-xs font-bold ${styles.text} ${styles.hoverText}`}>
+    {localizedService.linkText}
   </a>
 </div>

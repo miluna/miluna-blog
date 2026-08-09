@@ -4,6 +4,10 @@ import Layout from '../../layouts/Layout.astro';
 import BlogHeader from '../../components/blog/BlogHeader.astro';
 import BlogSidebar from '../../components/blog/BlogSidebar.astro';
 import BlogPostCard from '../../components/blog/BlogPostCard.astro';
+import { translations } from '../../data/translations';
+
+const lang = 'en';
+const t = translations[lang];
 
 const posts = await getCollection('blog');
 // Filter for English posts only
@@ -15,34 +19,34 @@ const sortedPosts = enPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pub
 // Collect all unique tags for quick filtering links
 const allTags = [...new Set(enPosts.flatMap(post => post.data.tags))];
 
-const description = "Engineering insights, in-depth analyses, and thoughts on scalability, distributed computing, and mission-critical systems.";
+const description = t.blogDescription;
 ---
 
 <Layout title="Engineering Blog | Miluna Cloud Services" description={description}>
   <div class="relative py-16 overflow-hidden">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <BlogHeader lang="en" title="Engineering Blog" badge="Technical Posts" description={description} />
+      <BlogHeader lang={lang} title="Engineering Blog" badge="Technical Posts" description={description} />
 
       <!-- Main Layout: Sidebar Tags + Articles list -->
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
         <!-- Sidebar tags -->
         <div class="lg:col-span-1">
-          <BlogSidebar lang="en" tags={allTags} totalPosts={enPosts.length} />
+          <BlogSidebar lang={lang} tags={allTags} totalPosts={enPosts.length} />
         </div>
 
         <!-- Articles list -->
         <div class="lg:col-span-3 space-y-8">
           <div id="no-posts-msg" class="hidden text-center py-20 bg-white rounded-2xl border border-slate-200/80 shadow-xs">
-            <p class="text-slate-600 font-medium">No articles found for the selected topic.</p>
+            <p class="text-slate-600 font-medium">{t.blogNoPosts}</p>
           </div>
 
           {sortedPosts.length === 0 ? (
             <div class="text-center py-20 bg-white rounded-2xl border border-slate-200/80 shadow-xs">
-              <p class="text-slate-600">No posts published yet. Check back soon!</p>
+              <p class="text-slate-600">{t.blogEmptyState}</p>
             </div>
           ) : (
             sortedPosts.map((post) => (
-              <BlogPostCard lang="en" post={post} />
+              <BlogPostCard lang={lang} post={post} />
             ))
           )}
         </div>
