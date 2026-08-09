@@ -1,14 +1,24 @@
 ---
+import { translations } from '../data/translations';
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
+const isSpanish = lang === 'es';
+const t = translations[lang];
+
 // Client company logos & tech stack tailored to Cloud, Frameworks, AI & Automotive
 const clientLogos = [
   { name: "Juguetronica", category: "E-commerce & Marketplaces", icon: "juguetronica" },  
-  { name: "Escuela CEV", category: "Education", icon: "cev" },
+  { name: "Escuela CEV", category: isSpanish ? "Educación" : "Education", icon: "cev" },
   { name: "Klarna", category: "E-commerce FinTech", icon: "klarna" },
   { name: "Openbank", category: "Banking Systems", icon: "openbank" },
   { name: "Daimler", category: "Automotive", icon: "daimler" },
   { name: "Sopra HR", category: "HR Tech", icon: "sopra-hr" },
-  { name: "Oru Studio", category: "Video Games & Media", icon: "oru" },
-  { name: "Aechelon Technology", category: "Government & Defense Simulators", icon: "aechelon" },    
+  { name: "Oru Studio", category: isSpanish ? "Videojuegos & Media" : "Video Games & Media", icon: "oru" },
+  { name: "Aechelon Technology", category: isSpanish ? "Simuladores Gobierno & Defensa" : "Government & Defense Simulators", icon: "aechelon" },
 ];
 
 // Duplicate array to ensure infinite loop seamlessly
@@ -18,7 +28,7 @@ const doubleLogos = [...clientLogos, ...clientLogos];
 <div class="w-full pt-10 pb-4">
   <div class="text-center mb-6">
     <p class="text-[11px] font-bold tracking-widest uppercase text-slate-600">
-      Empresas & Proyectos Destacados
+      {t.featuredCompanies}
     </p>
   </div>
 

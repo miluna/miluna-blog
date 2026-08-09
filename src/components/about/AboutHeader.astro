@@ -1,11 +1,23 @@
 ---
+import { translations } from '../../data/translations';
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
+const t = translations[lang];
 ---
 
 <div class="mb-12 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-6">
   <div>
-    <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 block">Perfil Profesional</span>
+    <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-2 block">
+      {t.professionalProfile}
+    </span>
     <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-2">Miguel Ángel Luna</h1>
-    <p class="text-lg text-slate-600 font-medium">Senior Software Engineer & Consultor de Sistemas Distribuidos Cloud</p>
+    <p class="text-lg text-slate-600 font-medium">
+      {t.professionalTitle}
+    </p>
   </div>
 
   <!-- Prominent LinkedIn Link Button -->
@@ -18,7 +30,7 @@
     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
       <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
     </svg>
-    Ver Perfil Completo en LinkedIn
+    {t.linkedinButton}
     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
     </svg>

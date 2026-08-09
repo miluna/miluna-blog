@@ -1,6 +1,15 @@
 ---
 import LogoCarousel from '../LogoCarousel.astro';
 import { MAILTO_CONTACT } from '../../data/contact';
+import { translations } from '../../data/translations';
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
+const isSpanish = lang === 'es';
+const t = translations[lang];
 ---
 
 <section class="relative pt-20 pb-16 overflow-hidden">
@@ -12,34 +21,34 @@ import { MAILTO_CONTACT } from '../../data/contact';
     <!-- Status Badge -->
     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-xs font-semibold tracking-wide text-emerald-800 mb-8 shadow-xs">
       <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-      Disponible para proyectos Backend, Cloud AWS & Agentes de IA
+      {t.heroStatusBadge}
     </div>
 
     <!-- Main Headline -->
     <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 mb-6 max-w-4xl mx-auto leading-[1.15]">
-      Microservicios Backend <br class="hidden sm:inline" />
-      <span class="block text-slate-900">&</span>
+      {t.heroTitlePart1} <br class="hidden sm:inline" />
+      <span class="block text-slate-900">{t.heroTitleAnd}</span>
       <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-800 bg-clip-text text-transparent">
-        Arquitectura Cloud
+        {t.heroTitlePart2}
       </span>
     </h1>
 
     <!-- Description -->
     <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
-      Servicios de ingeniería senior por <strong class="text-slate-900 font-semibold">Miguel Ángel Luna</strong>. Especializado en desarrollo de microservicios con <span class="text-slate-900 font-semibold">Spring Boot & FastAPI</span>, despliegues sobre <span class="text-slate-900 font-semibold">AWS y Kubernetes</span>, creación de <span class="text-slate-900 font-semibold">Agentes de IA y Servidores MCP</span>, y <span class="text-slate-900 font-semibold">migraciones RDS Aurora sin caída de servicio</span>.
+      {t.heroDesc}
     </p>
 
     <!-- Action Buttons -->
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
       <a href={MAILTO_CONTACT} class="w-full sm:w-auto px-8 py-4 bg-slate-900 hover:bg-indigo-600 text-white font-semibold rounded-xl transition-all shadow-sm hover:shadow-md text-center">
-        Contactar
+        {t.contactMe}
       </a>
-      <a href="/about" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-semibold rounded-xl transition-all shadow-xs text-center">
-        Saber más
+      <a href={isSpanish ? "/es/about" : "/about"} class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-semibold rounded-xl transition-all shadow-xs text-center">
+        {t.learnMore}
       </a>
     </div>
 
     <!-- Logo Carousel under Title and Description -->
-    <LogoCarousel />
+    <LogoCarousel lang={lang} />
   </div>
 </section>

@@ -1,18 +1,29 @@
 ---
-import { impactCardsData } from '../../data/impactCards';
+import { impactCardsData, impactCardsDataEn } from '../../data/impactCards';
+import { translations } from '../../data/translations';
 import ImpactCard from './ImpactCard.astro';
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
+const isSpanish = lang === 'es';
+const t = translations[lang];
+
+const cards = isSpanish ? impactCardsData : impactCardsDataEn;
 ---
 
 <div class="mb-16">
   <div class="flex items-center justify-between mb-8">
     <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 flex items-center gap-3">
       <span class="w-2 h-6 bg-indigo-600 rounded-full"></span>
-      Impacto Técnico & Logros en Producción
+      {t.technicalImpactHeader}
     </h2>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {impactCardsData.map((card) => (
+    {cards.map((card) => (
       <ImpactCard card={card} />
     ))}
   </div>

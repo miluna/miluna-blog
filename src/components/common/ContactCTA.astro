@@ -1,7 +1,9 @@
 ---
 import { CONTACT_EMAIL } from '../../data/contact';
+import { translations } from '../../data/translations';
 
 interface Props {
+  lang?: 'en' | 'es';
   title?: string;
   subtitle?: string;
   badge?: string;
@@ -11,11 +13,14 @@ interface Props {
   class?: string;
 }
 
+const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
+const t = translations[lang];
+
 const {
-  title = "Resolvamos retos operativos.",
-  badge = "¿Tienes un proyecto Backend, Cloud o de Agentes de IA?",
-  description = "Desde microservicios en Spring Boot & FastAPI desplegados en AWS/Kubernetes, hasta migraciones sin caída en RDS Aurora y automatizaciones avanzadas con Agentes de IA.",
-  buttonText = "Contactar",
+  title = t.contactTitle,
+  badge = t.contactBadge,
+  description = t.contactDesc,
+  buttonText = t.contactMe,
   email = CONTACT_EMAIL,
   class: className = "py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
 } = Astro.props;

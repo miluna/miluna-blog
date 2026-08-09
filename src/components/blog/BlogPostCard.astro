@@ -1,11 +1,18 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { translations } from '../../data/translations';
 
 interface Props {
+  lang?: 'en' | 'es';
   post: CollectionEntry<'blog'>;
 }
 
-const { post } = Astro.props;
+const { post, lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
+const isSpanish = lang === 'es';
+const t = translations[lang];
+
+const idWithoutPrefix = post.id.replace(/^(en|es)\//, '');
+const href = isSpanish ? `/es/blog/${idWithoutPrefix}` : `/blog/${idWithoutPrefix}`;
 ---
 
 <article 
@@ -14,13 +21,13 @@ const { post } = Astro.props;
 >
   <div class="flex-grow">
     <div class="flex flex-wrap items-center gap-3 mb-3 text-xs text-slate-500">
-      <span>{post.data.pubDate.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+      <span>{post.data.pubDate.toLocaleDateString(isSpanish ? 'es-ES' : 'en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
       <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-      <span>Por {post.data.author}</span>
+      <span>{t.byAuthor} {post.data.author}</span>
     </div>
 
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">
-      <a href={`/blog/${post.id}`}>{post.data.title}</a>
+      <a href={href}>{post.data.title}</a>
     </h2>
 
     <p class="text-slate-600 text-sm leading-relaxed mb-6 max-w-3xl">
@@ -40,8 +47,8 @@ const { post } = Astro.props;
         ))}
       </div>
 
-      <a href={`/blog/${post.id}`} class="text-indigo-600 group-hover:text-indigo-800 text-sm font-bold inline-flex items-center gap-1.5 transition-colors">
-        Leer Artículo
+      <a href={href} class="text-indigo-600 group-hover:text-indigo-800 text-sm font-bold inline-flex items-center gap-1.5 transition-colors">
+        {t.readArticle}
         <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>

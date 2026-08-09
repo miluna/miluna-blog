@@ -8,21 +8,31 @@ interface Props {
   description?: string;
 }
 
-const { 
-  title = "Miluna Cloud | Arquitectura de Sistemas Distribuidos Cloud, AWS & Kubernetes", 
-  description = "Miluna Cloud Services es la página de consultoría de Miguel Ángel Luna, Ingeniero de Software Senior especializado en Sistemas Distribuidos Cloud sobre AWS y Kubernetes (K8s, ECS, Lambda, Kafka, RDS Aurora)." 
-} = Astro.props;
+const isSpanish = Astro.url.pathname.startsWith('/es') || Astro.url.pathname.includes('/es/');
+const lang = isSpanish ? 'es' : 'en';
+
+// Set localized defaults for title and description if not provided
+const defaultTitle = isSpanish
+  ? "Miluna Cloud | Arquitectura de Sistemas Distribuidos Cloud, AWS & Kubernetes"
+  : "Miluna Cloud | Cloud Distributed Systems Architecture, AWS & Kubernetes";
+
+const defaultDescription = isSpanish
+  ? "Miluna Cloud Services es la página de consultoría de Miguel Ángel Luna, Ingeniero de Software Senior especializado en Sistemas Distribuidos Cloud sobre AWS y Kubernetes (K8s, ECS, Lambda, Kafka, RDS Aurora)."
+  : "Miluna Cloud Services is the consulting page of Miguel Ángel Luna, Senior Software Engineer specialized in Cloud Distributed Systems on AWS and Kubernetes (K8s, ECS, Lambda, Kafka, RDS Aurora).";
+
+const displayTitle = Astro.props.title || defaultTitle;
+const displayDescription = Astro.props.description || defaultDescription;
 ---
 
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{displayTitle}</title>
+    <meta name="description" content={displayDescription} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">

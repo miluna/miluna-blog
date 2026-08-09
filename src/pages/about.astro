@@ -6,21 +6,22 @@ import ImpactGrid from '../components/about/ImpactGrid.astro';
 import ContactCTA from '../components/common/ContactCTA.astro';
 ---
 
-<Layout title="Sobre Miguel Ángel Luna | Miluna Cloud Services" description="Conoce a Miguel Ángel Luna, especialista en Microservicios (Spring Boot & FastAPI), Arquitectura Cloud (AWS & K8s), Agentes de IA y FinOps.">
+<Layout title="About Miguel Ángel Luna | Miluna Cloud Services" description="Learn more about Miguel Ángel Luna, specialist in Microservices (Spring Boot & FastAPI), Cloud Architecture (AWS & K8s), AI Agents, and FinOps.">
   <div class="relative py-16 overflow-hidden">
     <!-- Background glows -->
     <div class="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-indigo-50/80 rounded-full blur-3xl -z-10"></div>
     <div class="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-purple-50/60 rounded-full blur-3xl -z-10"></div>
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <AboutHeader />
-      <BioSection />
-      <ImpactGrid />
+      <AboutHeader lang="en" />
+      <BioSection lang="en" />
+      <ImpactGrid lang="en" />
       <div id="contact">
         <ContactCTA 
-          title="Hablemos de tu Infraestructura o Microservicios"
+          lang="en"
+          title="Let's Talk About Your Infrastructure or Microservices"
           badge=""
-          description="¿Necesitas desarrollo backend senior en Spring Boot o FastAPI, optimización de arquitectura cloud en AWS/K8s o Agentes de IA? Contáctame."
+          description="Do you need senior backend development in Spring Boot or FastAPI, cloud architecture optimization in AWS/K8s, or AI Agents? Get in touch."
         />
       </div>
     </div>

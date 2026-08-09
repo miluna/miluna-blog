@@ -1,11 +1,15 @@
 ---
+import { translations } from '../../data/translations';
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
+const t = translations[lang];
 ---
 
 <div class="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/80 shadow-xs mb-16 space-y-4 text-slate-700 leading-relaxed">
-  <p class="text-base sm:text-lg">
-    Soy Miguel Ángel Luna, Ingeniero de Software centrado en el desarrollo de <strong class="text-slate-900 font-semibold">microservicios backend</strong> (Spring Boot & FastAPI), diseño de <strong class="text-slate-900 font-semibold">sistemas distribuidos cloud</strong> (AWS & Kubernetes) y resolución acelerada de incidencias operativas mediante <strong class="text-slate-900 font-semibold">Agentes de IA y Servidores MCP</strong>.
-  </p>
-  <p class="text-sm sm:text-lg text-slate-600">
-    Cuento con amplia experiencia en entornos de alta resiliencia (FinTech, Automoción Cloud), especializándome en arquitecturas de cero margen de error, migraciones en caliente sin caída de servicio y optimizaciones de costes de infraestructura (FinOps).
-  </p>
+  <p class="text-base sm:text-lg" set:html={t.bioPara1} />
+  <p class="text-sm sm:text-lg text-slate-600" set:html={t.bioPara2} />
 </div>

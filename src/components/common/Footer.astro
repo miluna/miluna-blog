@@ -1,7 +1,12 @@
 ---
 import { MAILTO_CONTACT } from '../../data/contact';
+import { translations } from '../../data/translations';
 
 const currentYear = new Date().getFullYear();
+const currentPath = Astro.url.pathname;
+const isSpanish = currentPath.startsWith('/es') || currentPath.includes('/es/');
+const lang = isSpanish ? 'es' : 'en';
+const t = translations[lang];
 ---
 
 <footer class="bg-slate-50 border-t border-slate-200/80 py-12 mt-20">
@@ -17,37 +22,43 @@ const currentYear = new Date().getFullYear();
           </span>
         </div>
         <p class="text-slate-600 text-sm max-w-sm leading-relaxed">
-          Consultoría y arquitectura de sistemas distribuidos en la nube (Kubernetes, AWS ECS, Lambda, Kafka).
+          {t.footerDesc}
         </p>
       </div>
 
       <div>
-        <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Especialidades</h3>
+        <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">
+          {t.specialties}
+        </h3>
         <ul class="space-y-2 text-sm text-slate-600">
-          <li><a href="/about" class="hover:text-indigo-600 transition-colors">Microservicios Cloud</a></li>
-          <li><a href="/about" class="hover:text-indigo-600 transition-colors">Agentes IA & MCP</a></li>
-          <li><a href="/about" class="hover:text-indigo-600 transition-colors">Pasarelas de pagos</a></li>
-          <li><a href="/about" class="hover:text-indigo-600 transition-colors">Migraciones y Optimización de Costes</a></li>
+          <li><a href={isSpanish ? "/es/about" : "/about"} class="hover:text-indigo-600 transition-colors">{t.specialtyCloud}</a></li>
+          <li><a href={isSpanish ? "/es/about" : "/about"} class="hover:text-indigo-600 transition-colors">{t.specialtyAI}</a></li>
+          <li><a href={isSpanish ? "/es/about" : "/about"} class="hover:text-indigo-600 transition-colors">{t.specialtyPayments}</a></li>
+          <li><a href={isSpanish ? "/es/about" : "/about"} class="hover:text-indigo-600 transition-colors">{t.specialtyMigrations}</a></li>
         </ul>
       </div>
 
       <div>
-        <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Navegación</h3>
+        <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">
+          {t.navigation}
+        </h3>
         <ul class="space-y-2 text-sm text-slate-600">
-          <li><a href="/" class="hover:text-indigo-600 transition-colors">Inicio</a></li>
-          <li><a href="/about" class="hover:text-indigo-600 transition-colors">Sobre Miguel Ángel</a></li>
-          <li><a href="/blog" class="hover:text-indigo-600 transition-colors">Engineering Blog</a></li>
-          <li><a href={MAILTO_CONTACT} class="hover:text-indigo-600 transition-colors">Contacto</a></li>
+          <li><a href={isSpanish ? "/es/" : "/"} class="hover:text-indigo-600 transition-colors">{t.home}</a></li>
+          <li><a href={isSpanish ? "/es/about" : "/about"} class="hover:text-indigo-600 transition-colors">{t.aboutMiguel}</a></li>
+          <li><a href={isSpanish ? "/es/blog" : "/blog"} class="hover:text-indigo-600 transition-colors">{t.blog}</a></li>
+          <li><a href={MAILTO_CONTACT} class="hover:text-indigo-600 transition-colors">{t.contact}</a></li>
         </ul>
       </div>
     </div>
 
     <div class="pt-8 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="text-xs text-slate-500">
-        &copy; {currentYear} Miluna Cloud Services. Todos los derechos reservados.
+        &copy; {currentYear} Miluna Cloud Services. {t.allRightsReserved}
       </p>
       <div class="flex gap-6 text-xs text-slate-500 font-medium">
-        <span>Consultoría Senior en Sistemas Distribuidos Cloud por Miguel Ángel Luna</span>
+        <span>
+          {t.seniorConsultantLine}
+        </span>
       </div>
     </div>
   </div>

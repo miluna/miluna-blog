@@ -1,23 +1,23 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ContactCTA from '../../components/common/ContactCTA.astro';
+import Layout from '../../../layouts/Layout.astro';
+import ContactCTA from '../../../components/common/ContactCTA.astro';
 import { getCollection, render } from 'astro:content';
-import { translations } from '../../data/translations';
+import { translations } from '../../../data/translations';
 
 export const prerender = true;
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  const enPosts = posts.filter(post => post.id.startsWith('en/'));
-  return enPosts.map((post) => ({
-    params: { id: post.id.replace(/^en\//, '') },
+  const esPosts = posts.filter(post => post.id.startsWith('es/'));
+  return esPosts.map((post) => ({
+    params: { id: post.id.replace(/^es\//, '') },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const lang = 'en';
+const lang = 'es';
 const t = translations[lang];
 ---
 
@@ -26,7 +26,7 @@ const t = translations[lang];
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Back to blog link -->
       <div class="mb-8">
-        <a href="/blog" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors group">
+        <a href="/es/blog" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors group">
           <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
@@ -54,7 +54,7 @@ const t = translations[lang];
           </div>
           <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
           <div>
-            <span class="text-slate-500">{t.publishedOn}</span> <time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+            <span class="text-slate-500">{t.publishedOn}</span> <time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
           </div>
         </div>
       </header>
@@ -66,8 +66,8 @@ const t = translations[lang];
 
       <!-- Footer signoff -->
       <footer class="mt-16">
-        <ContactCTA 
-          lang="en"
+        <ContactCTA
+          lang="es"
           class=""
           badge=""
           title={t.consultingServicesTitle}
