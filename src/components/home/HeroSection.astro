@@ -1,6 +1,6 @@
 ---
 import LogoCarousel from '../LogoCarousel.astro';
-import { MAILTO_CONTACT } from '../../data/contact';
+import { BOOKING_URL } from '../../data/contact';
 import { translations, type MultilingualProps } from '../../data/translations';
 
 interface Props extends MultilingualProps {}
@@ -38,7 +38,7 @@ const t = translations[lang];
 
     <!-- Action Buttons -->
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-      <a href={MAILTO_CONTACT} class="w-full sm:w-auto px-8 py-4 bg-slate-900 hover:bg-indigo-600 text-white font-semibold rounded-xl transition-all shadow-sm hover:shadow-md text-center">
+      <a href={BOOKING_URL} class="w-full sm:w-auto px-8 py-4 bg-slate-900 hover:bg-indigo-600 text-white font-semibold rounded-xl transition-all shadow-sm hover:shadow-md text-center">
         {t.contactMe}
       </a>
       <a href={isSpanish ? "/es/about" : "/about"} class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-semibold rounded-xl transition-all shadow-xs text-center">

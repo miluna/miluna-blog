@@ -1,5 +1,5 @@
 ---
-import { MAILTO_CONTACT } from '../../data/contact';
+import { BOOKING_URL } from '../../data/contact';
 import { translations } from '../../data/translations';
 
 const currentYear = new Date().getFullYear();
@@ -46,7 +46,7 @@ const t = translations[lang];
           <li><a href={isSpanish ? "/es/" : "/"} class="hover:text-indigo-600 transition-colors">{t.home}</a></li>
           <li><a href={isSpanish ? "/es/about" : "/about"} class="hover:text-indigo-600 transition-colors">{t.aboutMiguel}</a></li>
           <li><a href={isSpanish ? "/es/blog" : "/blog"} class="hover:text-indigo-600 transition-colors">{t.blog}</a></li>
-          <li><a href={MAILTO_CONTACT} class="hover:text-indigo-600 transition-colors">{t.contact}</a></li>
+          <li><a href={BOOKING_URL} class="hover:text-indigo-600 transition-colors">{t.contact}</a></li>
         </ul>
       </div>
     </div>
