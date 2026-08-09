@@ -14,7 +14,7 @@ export const translations = {
     home: "Home",
     aboutMe: "About Me",
     blog: "Blog",
-    contact: "Contact",
+    contact: "Book a meeting",
     language: "Language:",
 
     // Footer
@@ -35,7 +35,7 @@ export const translations = {
     heroTitleAnd: "and",
     heroTitlePart2: "Cloud Architecture",
     heroDesc: "Senior engineering services by Miguel Ángel Luna. Specialized in microservices development with Spring Boot & FastAPI, deployments on AWS and Kubernetes, building AI Agents and MCP Servers, and zero-downtime RDS Aurora migrations.",
-    contactMe: "Contact Me",
+    contactMe: "Book a meeting",
     learnMore: "Learn More",
     featuredCompanies: "Featured Companies & Projects",
 
@@ -77,7 +77,7 @@ export const translations = {
     allTopics: "All Topics",
     specializedConsulting: "Specialized Consulting?",
     consultingAdDesc: "Infrastructure optimization, C++ compilers, distributed systems, and cloud architecture.",
-    contactMeArrow: "Contact Me &rarr;",
+    contactMeArrow: "Book a meeting &rarr;",
 
     // BlogPostCard
     byAuthor: "By",
@@ -162,7 +162,7 @@ export const translations = {
     home: "Inicio",
     aboutMe: "Sobre Mí",
     blog: "Blog",
-    contact: "Contacto",
+    contact: "Reservar una reunión",
     language: "Idioma:",
 
     // Footer
@@ -183,7 +183,7 @@ export const translations = {
     heroTitleAnd: "&",
     heroTitlePart2: "Arquitectura Cloud",
     heroDesc: "Servicios de ingeniería senior por Miguel Ángel Luna. Especializado en desarrollo de microservicios con Spring Boot & FastAPI, despliegues sobre AWS y Kubernetes, creación de Agentes de IA y Servidores MCP, y migraciones RDS Aurora sin caída de servicio.",
-    contactMe: "Contactar",
+    contactMe: "Reservar una reunión",
     learnMore: "Saber más",
     featuredCompanies: "Empresas & Proyectos Destacados",
 
@@ -225,7 +225,7 @@ export const translations = {
     allTopics: "Todos los Temas",
     specializedConsulting: "¿Asesoría Especializada?",
     consultingAdDesc: "Optimización de infraestructura, compiladores C++, sistemas distribuidos y arquitectura en la nube.",
-    contactMeArrow: "Contactar &rarr;",
+    contactMeArrow: "Reservar una reunión &rarr;",
 
     // BlogPostCard
     byAuthor: "Por",

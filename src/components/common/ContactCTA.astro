@@ -1,5 +1,5 @@
 ---
-import { CONTACT_EMAIL } from '../../data/contact';
+import { BOOKING_URL } from '../../data/contact';
 import { translations, type MultilingualProps } from '../../data/translations';
 
 interface Props extends MultilingualProps {
@@ -8,7 +8,7 @@ interface Props extends MultilingualProps {
   badge?: string;
   description?: string;
   buttonText?: string;
-  email?: string;
+  bookingUrl?: string;
   class?: string;
 }
 
@@ -20,7 +20,7 @@ const {
   badge = t.contactBadge,
   description = t.contactDesc,
   buttonText = t.contactMe,
-  email = CONTACT_EMAIL,
+  bookingUrl = BOOKING_URL,
   class: className = "py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
 } = Astro.props;
 ---
@@ -34,7 +34,7 @@ const {
       <p class="text-slate-300 mb-8 text-sm sm:text-base leading-relaxed">
         {description}
       </p>
-      <a href={`mailto:${email}`} class="inline-block px-7 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-colors shadow-md">
+      <a href={bookingUrl} class="inline-block px-7 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-colors shadow-md">
         {buttonText}
       </a>
     </div>

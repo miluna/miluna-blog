@@ -1,5 +1,5 @@
 ---
-import { MAILTO_CONTACT } from '../../data/contact';
+import { BOOKING_URL } from '../../data/contact';
 import { translations } from '../../data/translations';
 
 const currentPath = Astro.url.pathname;
@@ -49,7 +49,7 @@ if (isSpanish) {
         <a href={esPath} data-lang-btn="es" class={`text-xs font-bold transition-colors ${isSpanish ? 'text-indigo-600 font-extrabold' : 'text-slate-400 hover:text-slate-600'}`}>ES</a>
       </div>
 
-      <a href={MAILTO_CONTACT} class="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-slate-900 hover:bg-indigo-600 rounded-xl transition-all shadow-xs hover:shadow-md">
+      <a href={BOOKING_URL} class="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-slate-900 hover:bg-indigo-600 rounded-xl transition-all shadow-xs hover:shadow-md">
         {t.contact}
       </a>
     </nav>
@@ -82,7 +82,7 @@ if (isSpanish) {
       <a href={esPath} data-lang-btn="es" class={`text-xs font-bold transition-colors ${isSpanish ? 'text-indigo-600 font-extrabold' : 'text-slate-400 hover:text-slate-600'}`}>ES (Español)</a>
     </div>
 
-    <a href={MAILTO_CONTACT} class="block text-center px-4 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 transition-colors">
+    <a href={BOOKING_URL} class="block text-center px-4 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 transition-colors">
       {t.contact}
     </a>
   </div>

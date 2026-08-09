@@ -1,5 +1,5 @@
 ---
-import { MAILTO_CONTACT } from '../../data/contact';
+import { BOOKING_URL } from '../../data/contact';
 import { translations, type MultilingualProps } from '../../data/translations';
 
 interface Props extends MultilingualProps {
@@ -43,7 +43,7 @@ const t = translations[lang];
     <p class="text-xs text-slate-300 leading-relaxed mb-4">
       {t.consultingAdDesc}
     </p>
-    <a href={MAILTO_CONTACT} class="inline-block text-xs font-bold text-indigo-300 hover:text-white transition-colors">
+    <a href={BOOKING_URL} class="inline-block text-xs font-bold text-indigo-300 hover:text-white transition-colors">
       {t.contactMeArrow}
     </a>
   </div>
