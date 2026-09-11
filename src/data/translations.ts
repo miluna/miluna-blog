@@ -13,9 +13,44 @@ export const translations = {
     // Header
     home: "Home",
     aboutMe: "About Me",
+    caseStudies: "Case Studies",
     blog: "Blog",
     contact: "Book a meeting",
     language: "Language:",
+
+    // Case Studies Header
+    caseStudiesHeaderTitle: "Case Studies",
+    caseStudiesHeaderBadge: "Success Stories",
+    caseStudiesHeaderDesc: "Real-world engineering challenges, architectural strategies, and measurable impact delivered across FinTech, Automotive, and Gaming platforms.",
+    readMore: "Read more →",
+
+    // Case Studies Items Data
+    caseStudiesList: [
+      {
+        id: "openbank",
+        companyName: "Openbank",
+        logo: "/openbank.webp",
+        title: "Bank Migration with 0% Downtime",
+        description: "We designed and executed the transition to RDS Aurora guaranteeing absolute transactional consistency and full 24/7 availability.",
+        blogSlug: "zero-downtime-banking-resilience"
+      },
+      {
+        id: "daimler",
+        companyName: "Daimler",
+        logo: "/daimler.webp",
+        title: "Safety-Critical Connected Car Systems",
+        description: "Architected fault-tolerant real-time IoT event processors for automotive telemetry with strict low-latency guarantees.",
+        blogSlug: "safety-critical-automotive-software"
+      },
+      {
+        id: "oru",
+        companyName: "Oru Studio",
+        logo: "/oru.webp",
+        title: "Scalable Game Server Infrastructure",
+        description: "Built high-throughput backend services and WebSocket orchestration handling concurrent player spikes without latency degradation.",
+        blogSlug: "engineering-scalable-game-backends"
+      }
+    ],
 
     // Footer
     footerDesc: "Consulting and architecture of cloud distributed systems (Kubernetes, AWS ECS, Lambda, Kafka).",
@@ -161,9 +196,44 @@ export const translations = {
     // Header
     home: "Inicio",
     aboutMe: "Sobre Mí",
+    caseStudies: "Casos de éxito",
     blog: "Blog",
     contact: "Reservar una reunión",
     language: "Idioma:",
+
+    // Case Studies Header
+    caseStudiesHeaderTitle: "Casos de Éxito",
+    caseStudiesHeaderBadge: "Casos de Estudio",
+    caseStudiesHeaderDesc: "Desafíos de ingeniería en el mundo real, estrategias arquitectónicas e impacto medible en plataformas FinTech, Automoción y Gaming.",
+    readMore: "Leer más →",
+
+    // Case Studies Items Data
+    caseStudiesList: [
+      {
+        id: "openbank",
+        companyName: "Openbank",
+        logo: "/openbank.webp",
+        title: "Migración bancaria con 0% de Downtime",
+        description: "Diseñamos y ejecutamos la transición a RDS Aurora garantizando absoluta consistencia transaccional y disponibilidad total.",
+        blogSlug: "zero-downtime-banking-resilience"
+      },
+      {
+        id: "daimler",
+        companyName: "Daimler",
+        logo: "/daimler.webp",
+        title: "Sistemas Críticos de Seguridad en Vehículos Conectados",
+        description: "Arquitectura de procesadores de eventos IoT tolerantes a fallos para telemetría automotriz con garantías de baja latencia.",
+        blogSlug: "safety-critical-automotive-software"
+      },
+      {
+        id: "oru",
+        companyName: "Oru Studio",
+        logo: "/oru.webp",
+        title: "Infraestructura Escalable de Servidores de Juego",
+        description: "Desarrollo de servicios backend y orquestación WebSocket de alto rendimiento para picos de jugadores simultáneos sin degradación de latencia.",
+        blogSlug: "engineering-scalable-game-backends"
+      }
+    ],
 
     // Footer
     footerDesc: "Consultoría y arquitectura de sistemas distribuidos en la nube (Kubernetes, AWS ECS, Lambda, Kafka).",
