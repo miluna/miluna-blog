@@ -20,7 +20,10 @@ const t = translations[lang];
 const blogUrl = lang === 'es' ? `/es/blog/${item.blogSlug}` : `/blog/${item.blogSlug}`;
 ---
 
-<div class="flex flex-col justify-between bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 shadow-xs hover:shadow-xl hover:border-indigo-200 transition-all group duration-300">
+<a
+  href={blogUrl}
+  class="flex flex-col justify-between bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 shadow-xs hover:shadow-xl hover:border-indigo-200 hover:-translate-y-0.5 transition-all group duration-300 block text-left"
+>
   <div class="space-y-5">
     <!-- Company Logo Header -->
     <div class="flex items-center gap-4">
@@ -55,11 +58,10 @@ const blogUrl = lang === 'es' ? `/es/blog/${item.blogSlug}` : `/blog/${item.blog
 
   <!-- Read More Link -->
   <div class="pt-6 mt-6 border-t border-slate-100">
-    <a
-      href={blogUrl}
-      class="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition-colors group/link"
+    <span
+      class="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 group-hover:text-indigo-700 transition-colors"
     >
       <span>{t.readMore}</span>
-    </a>
+    </span>
   </div>
-</div>
+</a>
