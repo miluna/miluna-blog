@@ -69,7 +69,7 @@ export const translations = {
     heroTitlePart1: "Backend Microservices",
     heroTitleAnd: "and",
     heroTitlePart2: "Cloud Architecture",
-    heroDesc: "Senior engineering services by Miguel Ángel Luna. Specialized in microservices development with Spring Boot & FastAPI, deployments on AWS and Kubernetes, building AI Agents and MCP Servers, and zero-downtime RDS Aurora migrations.",
+    heroDesc: "Engineering high-performance distributed systems, resilient cloud architectures, and production-ready AI Agent automations for mission-critical platforms.",
     contactMe: "Book a meeting",
     learnMore: "Learn More",
     featuredCompanies: "Featured Companies & Projects",
@@ -149,23 +149,19 @@ export const translations = {
     services: {
       'cloud-dev': {
         title: "Cloud Development",
-        description: "Robust microservices in Spring Boot and asynchronous APIs with FastAPI. Container orchestration (K8s/ECS), serverless, and Kafka streaming.",
-        linkText: "Hire →"
+        linkText: "Read more →"
       },
       'ai-mcp': {
         title: "AI Agents & MCP",
-        description: "Automation of incident resolution in production through MCP servers.",
-        linkText: "Hire →"
+        linkText: "Read more →"
       },
       'payment-gateways': {
         title: "Payment Gateways",
-        description: "Integration with Stripe, PayPal, and Adyen.",
-        linkText: "Hire →"
+        linkText: "Read more →"
       },
       'migrations-finops': {
         title: "Migrations & FinOps",
-        description: "Zero-downtime RDS Aurora migrations and cloud cost optimization.",
-        linkText: "Hire →"
+        linkText: "Read more →"
       }
     },
 
@@ -267,7 +263,7 @@ export const translations = {
     heroTitlePart1: "Microservicios Backend",
     heroTitleAnd: "&",
     heroTitlePart2: "Arquitectura Cloud",
-    heroDesc: "Servicios de ingeniería senior por Miguel Ángel Luna. Especializado en desarrollo de microservicios con Spring Boot & FastAPI, despliegues sobre AWS y Kubernetes, creación de Agentes de IA y Servidores MCP, y migraciones RDS Aurora sin caída de servicio.",
+    heroDesc: "Consultoría y arquitectura cloud para plataformas de misión crítica. Diseño de sistemas distribuidos de alto rendimiento, migraciones zero-downtime y Agentes de IA.",
     contactMe: "Reservar una reunión",
     learnMore: "Saber más",
     featuredCompanies: "Empresas & Proyectos Destacados",
@@ -347,23 +343,19 @@ export const translations = {
     services: {
       'cloud-dev': {
         title: "Desarrollo Cloud",
-        description: "Microservicios robustos en Spring Boot y APIs asíncronas con FastAPI. Orquestación de contenedores (K8s/ECS), serverless y streaming Kafka.",
-        linkText: "Contratar →"
+        linkText: "Leer más →"
       },
       'ai-mcp': {
         title: "Agentes de IA & MCP",
-        description: "Automatización de resolución de incidencias en producción mediante servidores MCP.",
-        linkText: "Contratar →"
+        linkText: "Leer más →"
       },
       'payment-gateways': {
         title: "Pasarelas de pagos",
-        description: "Integración con Stripe, Paypal y Adyen.",
-        linkText: "Contratar →"
+        linkText: "Leer más →"
       },
       'migrations-finops': {
         title: "Migraciones & FinOps",
-        description: "Migraciones RDS Aurora zero-downtime y optimización de costes cloud.",
-        linkText: "Contratar →"
+        linkText: "Leer más →"
       }
     },
 
