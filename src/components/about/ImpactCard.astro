@@ -45,24 +45,89 @@ const colorMap = {
 const styles = colorMap[card.badgeColor];
 ---
 
-<div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+<div
+  class="impact-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md hover:border-indigo-200 transition-all flex flex-col justify-between cursor-pointer group select-none self-start h-fit"
+  role="button"
+  tabindex="0"
+  aria-expanded="false"
+  title={lang === 'es' ? 'Haz clic para ver detalles' : 'Click to view details'}
+>
   <div>
     <div class="flex items-center justify-between mb-4">
       <span class={`p-2 rounded-xl ${styles.iconBg} ${styles.iconText}`}>
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" set:html={card.iconSvg} />
       </span>
-      <span class={`text-[10px] font-bold uppercase tracking-wider ${styles.badgeText} ${styles.badgeBg} px-2 py-0.5 rounded border ${styles.badgeBorder}`}>
-        {localizedCard.category}
-      </span>
+      <div class="flex items-center gap-2">
+        <span class={`text-[10px] font-bold uppercase tracking-wider ${styles.badgeText} ${styles.badgeBg} px-2 py-0.5 rounded border ${styles.badgeBorder}`}>
+          {localizedCard.category}
+        </span>
+        <span class="chevron-icon text-slate-400 group-hover:text-indigo-600 transition-transform duration-250 shrink-0">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </span>
+      </div>
     </div>
-    <h3 class="font-bold text-slate-900 text-lg mb-2">{localizedCard.title}</h3>
-    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-      {localizedCard.description}
-    </p>
+    <h3 class="font-bold text-slate-900 text-lg mb-1">{localizedCard.title}</h3>
+    
+    <div class="card-desc-wrapper">
+      <div class="overflow-hidden">
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed pt-2 pb-3">
+          {localizedCard.description}
+        </p>
+      </div>
+    </div>
   </div>
-  <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
+
+  <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100 mt-2">
     {card.tags.map((tag) => (
       <span class="px-2 py-0.5 text-[10px] font-semibold bg-slate-100 text-slate-700 rounded">{tag}</span>
     ))}
   </div>
 </div>
+
+<style>
+  .card-desc-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms ease;
+    opacity: 0;
+  }
+  .impact-card[aria-expanded="true"] .card-desc-wrapper {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+  .impact-card[aria-expanded="true"] .chevron-icon {
+    transform: rotate(180deg);
+  }
+  .impact-card[aria-expanded="true"] {
+    border-color: #c7d2fe; /* indigo-200 */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  }
+</style>
+
+<script>
+  function initImpactCards() {
+    const cards = document.querySelectorAll<HTMLElement>('.impact-card');
+    cards.forEach((card) => {
+      if (card.dataset.initialized === 'true') return;
+      card.dataset.initialized = 'true';
+
+      const toggle = () => {
+        const isExpanded = card.getAttribute('aria-expanded') === 'true';
+        card.setAttribute('aria-expanded', String(!isExpanded));
+      };
+
+      card.addEventListener('click', toggle);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        }
+      });
+    });
+  }
+
+  initImpactCards();
+  document.addEventListener('astro:page-load', initImpactCards);
+</script>

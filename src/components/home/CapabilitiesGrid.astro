@@ -6,7 +6,9 @@ import ServiceCard from '../common/ServiceCard.astro';
 interface Props extends MultilingualProps {}
 
 const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
+const isSpanish = lang === 'es';
 const t = translations[lang];
+const aboutHref = isSpanish ? '/es/about' : '/about';
 ---
 
 <section class="py-20 border-y border-slate-200/80 bg-slate-50/50">
@@ -23,10 +25,22 @@ const t = translations[lang];
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
       {servicesData.map((service) => (
         <ServiceCard service={service} lang={lang} />
       ))}
+    </div>
+
+    <div class="text-center">
+      <a
+        href={aboutHref}
+        class="inline-flex items-center gap-2 px-7 py-3.5 bg-white hover:bg-slate-50 border border-slate-300 hover:border-indigo-300 text-slate-800 hover:text-indigo-600 font-semibold rounded-xl transition-all shadow-xs hover:shadow-md text-sm group"
+      >
+        <span>{t.learnMore}</span>
+        <svg class="w-4 h-4 text-slate-500 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
     </div>
   </div>
 </section>

@@ -7,7 +7,34 @@ const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.prop
 const t = translations[lang];
 ---
 
-<div class="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/80 shadow-xs mb-16 space-y-4 text-slate-700 leading-relaxed">
-  <p class="text-base sm:text-lg" set:html={t.bioPara1} />
-  <p class="text-sm sm:text-lg text-slate-600" set:html={t.bioPara2} />
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-16 md:h-[360px]">
+  <!-- Portrait Block -->
+  <div class="md:col-span-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden flex h-[300px] sm:h-[340px] md:h-full">
+    <img
+      src="/portrait-miguel-angel-luna.webp"
+      alt="Miguel Ángel Luna"
+      class="w-full h-full object-cover object-center"
+      width="1000"
+      height="1000"
+      loading="eager"
+    />
+  </div>
+
+  <!-- Description Block -->
+  <div class="md:col-span-8 bg-white p-7 sm:p-8 lg:p-9 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-center md:h-full">
+    <p class="text-base sm:text-lg font-medium text-slate-800 leading-relaxed mb-5">
+      {t.bioHeadline}
+    </p>
+
+    <ul class="space-y-3">
+      {t.bioHighlights.map((item) => (
+        <li class="flex items-start gap-3">
+          <span class="mt-2 w-2 h-2 rounded-full bg-indigo-600 shrink-0"></span>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <strong class="font-semibold text-slate-900">{item.label}:</strong> {item.text}
+          </p>
+        </li>
+      ))}
+    </ul>
+  </div>
 </div>

@@ -13,9 +13,44 @@ export const translations = {
     // Header
     home: "Home",
     aboutMe: "About Me",
+    caseStudies: "Case Studies",
     blog: "Blog",
     contact: "Book a meeting",
     language: "Language:",
+
+    // Case Studies Header
+    caseStudiesHeaderTitle: "Case Studies",
+    caseStudiesHeaderBadge: "Success Stories",
+    caseStudiesHeaderDesc: "Real-world engineering challenges, architectural strategies, and measurable impact delivered across FinTech, Automotive, and Gaming platforms.",
+    readMore: "Read more →",
+
+    // Case Studies Items Data
+    caseStudiesList: [
+      {
+        id: "openbank",
+        companyName: "Openbank",
+        logo: "/openbank.webp",
+        title: "Bank Migration with 0% Downtime",
+        description: "We designed and executed the transition to RDS Aurora guaranteeing absolute transactional consistency and full 24/7 availability.",
+        blogSlug: "zero-downtime-banking-resilience"
+      },
+      {
+        id: "daimler",
+        companyName: "Daimler",
+        logo: "/daimler.webp",
+        title: "Safety-Critical Connected Car Systems",
+        description: "Architected fault-tolerant real-time IoT event processors for automotive telemetry with strict low-latency guarantees.",
+        blogSlug: "safety-critical-automotive-software"
+      },
+      {
+        id: "oru",
+        companyName: "Oru Studio",
+        logo: "/oru.webp",
+        title: "Scalable Game Server Infrastructure",
+        description: "Built high-throughput backend services and WebSocket orchestration handling concurrent player spikes without latency degradation.",
+        blogSlug: "engineering-scalable-game-backends"
+      }
+    ],
 
     // Footer
     footerDesc: "Consulting and architecture of cloud distributed systems (Kubernetes, AWS ECS, Lambda, Kafka).",
@@ -34,7 +69,7 @@ export const translations = {
     heroTitlePart1: "Backend Microservices",
     heroTitleAnd: "and",
     heroTitlePart2: "Cloud Architecture",
-    heroDesc: "Senior engineering services by Miguel Ángel Luna. Specialized in microservices development with Spring Boot & FastAPI, deployments on AWS and Kubernetes, building AI Agents and MCP Servers, and zero-downtime RDS Aurora migrations.",
+    heroDesc: "Engineering high-performance distributed systems, resilient cloud architectures, and production-ready AI Agent automations for mission-critical platforms.",
     contactMe: "Book a meeting",
     learnMore: "Learn More",
     featuredCompanies: "Featured Companies & Projects",
@@ -61,6 +96,21 @@ export const translations = {
     linkedinButton: "View Full Profile on LinkedIn",
 
     // BioSection
+    bioHeadline: "Helping companies build and operate backend architectures where downtime and data loss are not an option.",
+    bioHighlights: [
+      {
+        label: "Distributed Systems",
+        text: "Resilient microservices and high-throughput event streaming."
+      },
+      {
+        label: "Mission-Critical",
+        text: "Proven track record in high-reliability environments (FinTech & Automotive)."
+      },
+      {
+        label: "AI-Driven Operations",
+        text: "Incident resolution and workflow automation using AI Agents & MCP."
+      }
+    ],
     bioPara1: "I am Miguel Ángel Luna, a Software Engineer focused on the development of <strong class=\"text-slate-900 font-semibold\">backend microservices</strong> (Spring Boot & FastAPI), design of <strong class=\"text-slate-900 font-semibold\">cloud distributed systems</strong> (AWS & Kubernetes), and accelerated operational incident resolution using <strong class=\"text-slate-900 font-semibold\">AI Agents and MCP Servers</strong>.",
     bioPara2: "I have extensive experience in high-resiliency environments (FinTech, Cloud Automotive), specializing in zero-error margin architectures, hot migrations with zero-downtime, and infrastructure cost optimizations (FinOps).",
 
@@ -99,23 +149,19 @@ export const translations = {
     services: {
       'cloud-dev': {
         title: "Cloud Development",
-        description: "Robust microservices in Spring Boot and asynchronous APIs with FastAPI. Container orchestration (K8s/ECS), serverless, and Kafka streaming.",
-        linkText: "Hire →"
+        linkText: "Read more →"
       },
       'ai-mcp': {
         title: "AI Agents & MCP",
-        description: "Automation of incident resolution in production through MCP servers.",
-        linkText: "Hire →"
+        linkText: "Read more →"
       },
       'payment-gateways': {
         title: "Payment Gateways",
-        description: "Integration with Stripe, PayPal, and Adyen.",
-        linkText: "Hire →"
+        linkText: "Read more →"
       },
       'migrations-finops': {
         title: "Migrations & FinOps",
-        description: "Zero-downtime RDS Aurora migrations and cloud cost optimization.",
-        linkText: "Hire →"
+        linkText: "Read more →"
       }
     },
 
@@ -161,9 +207,44 @@ export const translations = {
     // Header
     home: "Inicio",
     aboutMe: "Sobre Mí",
+    caseStudies: "Casos de éxito",
     blog: "Blog",
     contact: "Reservar una reunión",
     language: "Idioma:",
+
+    // Case Studies Header
+    caseStudiesHeaderTitle: "Casos de Éxito",
+    caseStudiesHeaderBadge: "Casos de Estudio",
+    caseStudiesHeaderDesc: "Desafíos de ingeniería en el mundo real, estrategias arquitectónicas e impacto medible en plataformas FinTech, Automoción y Gaming.",
+    readMore: "Leer más →",
+
+    // Case Studies Items Data
+    caseStudiesList: [
+      {
+        id: "openbank",
+        companyName: "Openbank",
+        logo: "/openbank.webp",
+        title: "Migración bancaria con 0% de Downtime",
+        description: "Diseñamos y ejecutamos la transición a RDS Aurora garantizando absoluta consistencia transaccional y disponibilidad total.",
+        blogSlug: "zero-downtime-banking-resilience"
+      },
+      {
+        id: "daimler",
+        companyName: "Daimler",
+        logo: "/daimler.webp",
+        title: "Sistemas Críticos de Seguridad en Vehículos Conectados",
+        description: "Arquitectura de procesadores de eventos IoT tolerantes a fallos para telemetría automotriz con garantías de baja latencia.",
+        blogSlug: "safety-critical-automotive-software"
+      },
+      {
+        id: "oru",
+        companyName: "Oru Studio",
+        logo: "/oru.webp",
+        title: "Infraestructura Escalable de Servidores de Juego",
+        description: "Desarrollo de servicios backend y orquestación WebSocket de alto rendimiento para picos de jugadores simultáneos sin degradación de latencia.",
+        blogSlug: "engineering-scalable-game-backends"
+      }
+    ],
 
     // Footer
     footerDesc: "Consultoría y arquitectura de sistemas distribuidos en la nube (Kubernetes, AWS ECS, Lambda, Kafka).",
@@ -182,7 +263,7 @@ export const translations = {
     heroTitlePart1: "Microservicios Backend",
     heroTitleAnd: "&",
     heroTitlePart2: "Arquitectura Cloud",
-    heroDesc: "Servicios de ingeniería senior por Miguel Ángel Luna. Especializado en desarrollo de microservicios con Spring Boot & FastAPI, despliegues sobre AWS y Kubernetes, creación de Agentes de IA y Servidores MCP, y migraciones RDS Aurora sin caída de servicio.",
+    heroDesc: "Consultoría y arquitectura cloud para plataformas de misión crítica. Diseño de sistemas distribuidos de alto rendimiento, migraciones zero-downtime y Agentes de IA.",
     contactMe: "Reservar una reunión",
     learnMore: "Saber más",
     featuredCompanies: "Empresas & Proyectos Destacados",
@@ -209,6 +290,21 @@ export const translations = {
     linkedinButton: "Ver Perfil Completo en LinkedIn",
 
     // BioSection
+    bioHeadline: "Ayudo a empresas a construir y operar arquitecturas backend donde el downtime y la pérdida de datos no son una opción.",
+    bioHighlights: [
+      {
+        label: "Sistemas Distribuidos",
+        text: "Microservicios resilientes y flujos de eventos de alto rendimiento."
+      },
+      {
+        label: "Entornos Críticos",
+        text: "Trayectoria probada en sectores de alta exigencia (FinTech y Automoción)."
+      },
+      {
+        label: "Ingeniería con IA",
+        text: "Resolución de incidentes y automatización operativa con Agentes y MCP."
+      }
+    ],
     bioPara1: "Soy Miguel Ángel Luna, Ingeniero de Software centrado en el desarrollo de <strong class=\"text-slate-900 font-semibold\">microservicios backend</strong> (Spring Boot & FastAPI), diseño de <strong class=\"text-slate-900 font-semibold\">sistemas distribuidos cloud</strong> (AWS & Kubernetes) y resolución acelerada de incidencias operativas mediante <strong class=\"text-slate-900 font-semibold\">Agentes de IA y Servidores MCP</strong>.",
     bioPara2: "Cuento con amplia experiencia en entornos de alta resiliencia (FinTech, Automoción Cloud), especializándome en arquitecturas de cero margen de error, migraciones en caliente sin caída de servicio y optimizaciones de costes de infraestructura (FinOps).",
 
@@ -247,23 +343,19 @@ export const translations = {
     services: {
       'cloud-dev': {
         title: "Desarrollo Cloud",
-        description: "Microservicios robustos en Spring Boot y APIs asíncronas con FastAPI. Orquestación de contenedores (K8s/ECS), serverless y streaming Kafka.",
-        linkText: "Contratar →"
+        linkText: "Leer más →"
       },
       'ai-mcp': {
         title: "Agentes de IA & MCP",
-        description: "Automatización de resolución de incidencias en producción mediante servidores MCP.",
-        linkText: "Contratar →"
+        linkText: "Leer más →"
       },
       'payment-gateways': {
         title: "Pasarelas de pagos",
-        description: "Integración con Stripe, Paypal y Adyen.",
-        linkText: "Contratar →"
+        linkText: "Leer más →"
       },
       'migrations-finops': {
         title: "Migraciones & FinOps",
-        description: "Migraciones RDS Aurora zero-downtime y optimización de costes cloud.",
-        linkText: "Contratar →"
+        linkText: "Leer más →"
       }
     },
 
