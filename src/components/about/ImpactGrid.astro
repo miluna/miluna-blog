@@ -17,7 +17,7 @@ const t = translations[lang];
     </h2>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
     {impactCardsData.map((card) => (
       <ImpactCard card={card} lang={lang} />
     ))}
