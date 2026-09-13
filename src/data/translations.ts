@@ -96,6 +96,21 @@ export const translations = {
     linkedinButton: "View Full Profile on LinkedIn",
 
     // BioSection
+    bioHeadline: "Helping companies build and operate backend architectures where downtime and data loss are not an option.",
+    bioHighlights: [
+      {
+        label: "Distributed Systems",
+        text: "Resilient microservices and high-throughput event streaming."
+      },
+      {
+        label: "Mission-Critical",
+        text: "Proven track record in high-reliability environments (FinTech & Automotive)."
+      },
+      {
+        label: "AI-Driven Operations",
+        text: "Incident resolution and workflow automation using AI Agents & MCP."
+      }
+    ],
     bioPara1: "I am Miguel Ángel Luna, a Software Engineer focused on the development of <strong class=\"text-slate-900 font-semibold\">backend microservices</strong> (Spring Boot & FastAPI), design of <strong class=\"text-slate-900 font-semibold\">cloud distributed systems</strong> (AWS & Kubernetes), and accelerated operational incident resolution using <strong class=\"text-slate-900 font-semibold\">AI Agents and MCP Servers</strong>.",
     bioPara2: "I have extensive experience in high-resiliency environments (FinTech, Cloud Automotive), specializing in zero-error margin architectures, hot migrations with zero-downtime, and infrastructure cost optimizations (FinOps).",
 
@@ -279,6 +294,21 @@ export const translations = {
     linkedinButton: "Ver Perfil Completo en LinkedIn",
 
     // BioSection
+    bioHeadline: "Ayudo a empresas a construir y operar arquitecturas backend donde el downtime y la pérdida de datos no son una opción.",
+    bioHighlights: [
+      {
+        label: "Sistemas Distribuidos",
+        text: "Microservicios resilientes y flujos de eventos de alto rendimiento."
+      },
+      {
+        label: "Entornos Críticos",
+        text: "Trayectoria probada en sectores de alta exigencia (FinTech y Automoción)."
+      },
+      {
+        label: "Ingeniería con IA",
+        text: "Resolución de incidentes y automatización operativa con Agentes y MCP."
+      }
+    ],
     bioPara1: "Soy Miguel Ángel Luna, Ingeniero de Software centrado en el desarrollo de <strong class=\"text-slate-900 font-semibold\">microservicios backend</strong> (Spring Boot & FastAPI), diseño de <strong class=\"text-slate-900 font-semibold\">sistemas distribuidos cloud</strong> (AWS & Kubernetes) y resolución acelerada de incidencias operativas mediante <strong class=\"text-slate-900 font-semibold\">Agentes de IA y Servidores MCP</strong>.",
     bioPara2: "Cuento con amplia experiencia en entornos de alta resiliencia (FinTech, Automoción Cloud), especializándome en arquitecturas de cero margen de error, migraciones en caliente sin caída de servicio y optimizaciones de costes de infraestructura (FinOps).",
 
