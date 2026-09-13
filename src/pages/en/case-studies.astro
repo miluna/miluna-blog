@@ -1,14 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import CaseStudyCard from '../components/case-studies/CaseStudyCard.astro';
-import ContactCTA from '../components/common/ContactCTA.astro';
-import { translations } from '../data/translations';
+import Layout from '../../layouts/Layout.astro';
+import CaseStudyCard from '../../components/case-studies/CaseStudyCard.astro';
+import ContactCTA from '../../components/common/ContactCTA.astro';
+import { translations } from '../../data/translations';
 
 const lang = 'en';
 const t = translations[lang];
 ---
 
 <Layout
+  lang={lang}
   title={`${t.caseStudiesHeaderTitle} | Miluna Cloud Services`}
   description={t.caseStudiesHeaderDesc}
 >

@@ -1,44 +1,34 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import HeroSection from '../components/home/HeroSection.astro';
-import CapabilitiesGrid from '../components/home/CapabilitiesGrid.astro';
-import RecentPosts from '../components/home/RecentPosts.astro';
-import ContactCTA from '../components/common/ContactCTA.astro';
-
-const posts = await getCollection('blog');
-// Filter for English posts and sort by pubDate descending, take the top 3
-const enPosts = posts.filter(post => post.id.startsWith('en/'));
-const recentPosts = enPosts
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+// Root page: redirect to localized version (/en/ or /es/)
 ---
-
-<Layout title="Miluna Cloud | Microservices (Spring Boot & FastAPI), AWS & Kubernetes" description="Miluna Cloud Services is the consulting page of Miguel Ángel Luna, Senior Software Engineer specialized in Cloud Distributed Systems on AWS and Kubernetes (K8s, ECS, Lambda, Kafka, RDS Aurora).">
-  <!-- Client-side browser language detection script -->
-  <script is:inline>
-    (function() {
-      const storedLang = localStorage.getItem('preferred-lang');
-      if (storedLang === 'en') {
-        return;
-      }
-      if (storedLang === 'es') {
-        window.location.replace('/es/');
-        return;
-      }
-      // Detect browser language
-      const browserLang = navigator.language || '';
-      if (browserLang.startsWith('es')) {
-        localStorage.setItem('preferred-lang', 'es');
-        window.location.replace('/es/');
-      } else {
-        localStorage.setItem('preferred-lang', 'en');
-      }
-    })();
-  </script>
-
-  <HeroSection lang="en" />
-  <CapabilitiesGrid lang="en" />
-  <RecentPosts lang="en" posts={recentPosts} />
-  <ContactCTA lang="en" />
-</Layout>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miluna Cloud Services</title>
+    <meta http-equiv="refresh" content="0;url=/en/" />
+    <script is:inline>
+      (function() {
+        const storedLang = localStorage.getItem('preferred-lang');
+        if (storedLang === 'es') {
+          window.location.replace('/es/');
+          return;
+        }
+        if (storedLang === 'en') {
+          window.location.replace('/en/');
+          return;
+        }
+        const browserLang = navigator.language || '';
+        if (browserLang.startsWith('es')) {
+          window.location.replace('/es/');
+        } else {
+          window.location.replace('/en/');
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-[#FDFDFD] text-slate-700 flex items-center justify-center min-h-screen">
+    <p class="text-sm">Redirecting to <a href="/en/" class="text-indigo-600 underline">Miluna Cloud</a>...</p>
+  </body>
+</html>

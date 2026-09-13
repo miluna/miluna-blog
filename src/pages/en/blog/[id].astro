@@ -1,8 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ContactCTA from '../../components/common/ContactCTA.astro';
+import Layout from '../../../layouts/Layout.astro';
+import ContactCTA from '../../../components/common/ContactCTA.astro';
 import { getCollection, render } from 'astro:content';
-import { translations } from '../../data/translations';
+import { translations } from '../../../data/translations';
 
 export const prerender = true;
 
@@ -21,12 +21,12 @@ const lang = 'en';
 const t = translations[lang];
 ---
 
-<Layout title={`${post.data.title} | Miluna Cloud Engineering Blog`} description={post.data.description}>
+<Layout lang={lang} title={`${post.data.title} | Miluna Cloud Engineering Blog`} description={post.data.description}>
   <article class="relative py-16 overflow-hidden">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Back to blog link -->
       <div class="mb-8">
-        <a href="/blog" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors group">
+        <a href="/en/blog" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors group">
           <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>

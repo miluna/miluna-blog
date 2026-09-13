@@ -1,11 +1,11 @@
 ---
 import { BOOKING_URL } from '../../data/contact';
-import { translations } from '../../data/translations';
+import { translations, type MultilingualProps } from '../../data/translations';
 
+interface Props extends MultilingualProps {}
+
+const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
 const currentYear = new Date().getFullYear();
-const currentPath = Astro.url.pathname;
-const isSpanish = currentPath.startsWith('/es') || currentPath.includes('/es/');
-const lang = isSpanish ? 'es' : 'en';
 const t = translations[lang];
 ---
 
@@ -31,10 +31,10 @@ const t = translations[lang];
           {t.specialties}
         </h3>
         <ul class="space-y-2 text-sm text-slate-600">
-          <li><a href={isSpanish ? "/es/about" : "/about"} class="hover:text-indigo-600 transition-colors">{t.specialtyCloud}</a></li>
-          <li><a href={isSpanish ? "/es/about" : "/about"} class="hover:text-indigo-600 transition-colors">{t.specialtyAI}</a></li>
-          <li><a href={isSpanish ? "/es/about" : "/about"} class="hover:text-indigo-600 transition-colors">{t.specialtyPayments}</a></li>
-          <li><a href={isSpanish ? "/es/about" : "/about"} class="hover:text-indigo-600 transition-colors">{t.specialtyMigrations}</a></li>
+          <li><a href={`/${lang}/about`} class="hover:text-indigo-600 transition-colors">{t.specialtyCloud}</a></li>
+          <li><a href={`/${lang}/about`} class="hover:text-indigo-600 transition-colors">{t.specialtyAI}</a></li>
+          <li><a href={`/${lang}/about`} class="hover:text-indigo-600 transition-colors">{t.specialtyPayments}</a></li>
+          <li><a href={`/${lang}/about`} class="hover:text-indigo-600 transition-colors">{t.specialtyMigrations}</a></li>
         </ul>
       </div>
 
@@ -43,9 +43,9 @@ const t = translations[lang];
           {t.navigation}
         </h3>
         <ul class="space-y-2 text-sm text-slate-600">
-          <li><a href={isSpanish ? "/es/" : "/"} class="hover:text-indigo-600 transition-colors">{t.home}</a></li>
-          <li><a href={isSpanish ? "/es/about" : "/about"} class="hover:text-indigo-600 transition-colors">{t.aboutMiguel}</a></li>
-          <li><a href={isSpanish ? "/es/blog" : "/blog"} class="hover:text-indigo-600 transition-colors">{t.blog}</a></li>
+          <li><a href={`/${lang}/`} class="hover:text-indigo-600 transition-colors">{t.home}</a></li>
+          <li><a href={`/${lang}/about`} class="hover:text-indigo-600 transition-colors">{t.aboutMiguel}</a></li>
+          <li><a href={`/${lang}/blog`} class="hover:text-indigo-600 transition-colors">{t.blog}</a></li>
           <li><a href={BOOKING_URL} class="hover:text-indigo-600 transition-colors">{t.contact}</a></li>
         </ul>
       </div>

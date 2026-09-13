@@ -1,10 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import BlogHeader from '../../components/blog/BlogHeader.astro';
-import BlogSidebar from '../../components/blog/BlogSidebar.astro';
-import BlogPostCard from '../../components/blog/BlogPostCard.astro';
-import { translations } from '../../data/translations';
+import Layout from '../../../layouts/Layout.astro';
+import BlogHeader from '../../../components/blog/BlogHeader.astro';
+import BlogSidebar from '../../../components/blog/BlogSidebar.astro';
+import BlogPostCard from '../../../components/blog/BlogPostCard.astro';
+import { translations } from '../../../data/translations';
 
 const lang = 'en';
 const t = translations[lang];
@@ -22,7 +22,7 @@ const allTags = [...new Set(enPosts.flatMap(post => post.data.tags))];
 const description = t.blogDescription;
 ---
 
-<Layout title="Engineering Blog | Miluna Cloud Services" description={description}>
+<Layout lang={lang} title="Engineering Blog | Miluna Cloud Services" description={description}>
   <div class="relative py-16 overflow-hidden">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <BlogHeader lang={lang} title="Engineering Blog" badge="Technical Posts" description={description} />
@@ -60,22 +60,54 @@ const description = t.blogDescription;
     const filterBtns = document.querySelectorAll<HTMLButtonElement>('.tag-filter-btn');
     const postCards = document.querySelectorAll<HTMLElement>('.post-card');
     const emptyState = document.getElementById('no-posts-msg');
+    const dropdownToggle = document.getElementById('filter-dropdown-toggle') as HTMLButtonElement | null;
+    const dropdownContainer = document.getElementById('tag-filters-container') as HTMLElement | null;
+    const dropdownChevron = document.getElementById('filter-dropdown-chevron') as HTMLElement | null;
+    const activeFilterCountEl = document.getElementById('active-filter-count') as HTMLElement | null;
+
+    if (dropdownToggle && dropdownContainer) {
+      dropdownToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isHidden = dropdownContainer.classList.contains('hidden');
+        if (isHidden) {
+          dropdownContainer.classList.remove('hidden');
+          dropdownToggle.setAttribute('aria-expanded', 'true');
+          if (dropdownChevron) dropdownChevron.classList.add('rotate-180');
+        } else {
+          dropdownContainer.classList.add('hidden');
+          dropdownToggle.setAttribute('aria-expanded', 'false');
+          if (dropdownChevron) dropdownChevron.classList.remove('rotate-180');
+        }
+      });
+    }
 
     if (!filterBtns.length || !postCards.length) return;
 
-    function filterPosts(selectedTag: string) {
+    const activeTags = new Set<string>();
+
+    function updateFilters() {
       let visibleCount = 0;
 
       filterBtns.forEach(btn => {
         const btnTag = btn.getAttribute('data-tag');
-        const isSelected = btnTag === selectedTag;
+        if (!btnTag) return;
 
-        // Only toggle main sidebar buttons styling
+        const isAllBtn = btnTag === 'all';
+        const isSelected = isAllBtn ? activeTags.size === 0 : activeTags.has(btnTag);
+
+        // Sidebar buttons
         if (btn.parentElement?.id === 'tag-filters-container') {
           if (isSelected) {
             btn.className = 'tag-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 text-white cursor-pointer transition-all text-center lg:text-left block w-full';
           } else {
             btn.className = 'tag-filter-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200 cursor-pointer transition-all text-center lg:text-left block w-full';
+          }
+        } else {
+          // Post card tags
+          if (isSelected) {
+            btn.className = 'tag-filter-btn px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase text-white bg-indigo-600 border border-indigo-600 rounded transition-colors cursor-pointer';
+          } else {
+            btn.className = 'tag-filter-btn px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase text-slate-600 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded transition-colors cursor-pointer';
           }
         }
       });
@@ -89,7 +121,7 @@ const description = t.blogDescription;
           cardTags = [];
         }
 
-        if (selectedTag === 'all' || cardTags.includes(selectedTag)) {
+        if (activeTags.size === 0 || cardTags.some(tag => activeTags.has(tag))) {
           card.style.display = 'flex';
           visibleCount++;
         } else {
@@ -101,26 +133,57 @@ const description = t.blogDescription;
         emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
       }
 
+      // Update active filter count in dropdown toggle button
+      if (activeFilterCountEl) {
+        if (activeTags.size === 0) {
+          activeFilterCountEl.classList.add('hidden');
+          activeFilterCountEl.textContent = '';
+        } else {
+          activeFilterCountEl.textContent = `(${activeTags.size})`;
+          activeFilterCountEl.classList.remove('hidden');
+        }
+      }
+
       // Sync URL parameter without page refresh
       const url = new URL(window.location.href);
-      if (selectedTag === 'all') {
+      url.searchParams.delete('tags');
+      if (activeTags.size === 0) {
         url.searchParams.delete('tag');
       } else {
-        url.searchParams.set('tag', selectedTag);
+        url.searchParams.set('tag', Array.from(activeTags).join(','));
       }
       window.history.replaceState({}, '', url.toString());
     }
 
+    function toggleTag(tag: string) {
+      if (tag === 'all') {
+        activeTags.clear();
+      } else {
+        if (activeTags.has(tag)) {
+          activeTags.delete(tag);
+        } else {
+          activeTags.add(tag);
+        }
+      }
+      updateFilters();
+    }
+
     // Check URL parameters on initial page load
     const params = new URLSearchParams(window.location.search);
-    const initialTag = params.get('tag') || 'all';
-    filterPosts(initialTag);
+    const tagValues = [...params.getAll('tag'), ...params.getAll('tags')];
+    tagValues
+      .flatMap(val => val.split(','))
+      .map(t => t.trim())
+      .filter(t => t && t !== 'all')
+      .forEach(t => activeTags.add(t));
+
+    updateFilters();
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const tag = btn.getAttribute('data-tag') || 'all';
-        filterPosts(tag);
+        toggleTag(tag);
       });
     });
   }
