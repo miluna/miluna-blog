@@ -2,23 +2,26 @@
 import '../styles/global.css';
 import Header from '../components/common/Header.astro';
 import Footer from '../components/common/Footer.astro';
-import { translations } from '../data/translations';
+import { translations, type MultilingualProps } from '../data/translations';
 
-interface Props {
+interface Props extends MultilingualProps {
   title?: string;
   description?: string;
 }
 
-const isSpanish = Astro.url.pathname.startsWith('/es') || Astro.url.pathname.includes('/es/');
-const lang = isSpanish ? 'es' : 'en';
+const {
+  title,
+  description,
+  lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
+} = Astro.props;
 const t = translations[lang];
 
 // Set localized defaults for title and description if not provided
 const defaultTitle = t.layoutDefaultTitle;
 const defaultDescription = t.layoutDefaultDescription;
 
-const displayTitle = Astro.props.title || defaultTitle;
-const displayDescription = Astro.props.description || defaultDescription;
+const displayTitle = title || defaultTitle;
+const displayDescription = description || defaultDescription;
 ---
 
 <!DOCTYPE html>
@@ -35,14 +38,14 @@ const displayDescription = Astro.props.description || defaultDescription;
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body class="bg-[#FDFDFD] text-slate-900 font-sans antialiased min-h-screen flex flex-col selection:bg-indigo-600 selection:text-white">
-    <Header />
+    <Header lang={lang} />
 
     <!-- Main Content -->
     <main class="flex-grow">
       <slot />
     </main>
 
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>
 

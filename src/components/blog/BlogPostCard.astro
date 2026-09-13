@@ -7,11 +7,10 @@ interface Props extends MultilingualProps {
 }
 
 const { post, lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
-const isSpanish = lang === 'es';
 const t = translations[lang];
 
 const idWithoutPrefix = post.id.replace(/^(en|es)\//, '');
-const href = isSpanish ? `/es/blog/${idWithoutPrefix}` : `/en/blog/${idWithoutPrefix}`;
+const href = `/${lang}/blog/${idWithoutPrefix}`;
 ---
 
 <article 
@@ -20,7 +19,7 @@ const href = isSpanish ? `/es/blog/${idWithoutPrefix}` : `/en/blog/${idWithoutPr
 >
   <div class="flex-grow">
     <div class="flex flex-wrap items-center gap-3 mb-3 text-xs text-slate-500">
-      <span>{post.data.pubDate.toLocaleDateString(isSpanish ? 'es-ES' : 'en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+      <span>{post.data.pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
       <span class="w-1 h-1 rounded-full bg-slate-300"></span>
       <span>{t.byAuthor} {post.data.author}</span>
     </div>

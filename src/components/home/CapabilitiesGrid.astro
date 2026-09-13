@@ -6,9 +6,8 @@ import ServiceCard from '../common/ServiceCard.astro';
 interface Props extends MultilingualProps {}
 
 const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
-const isSpanish = lang === 'es';
 const t = translations[lang];
-const aboutHref = isSpanish ? '/es/about' : '/en/about';
+const aboutHref = `/${lang}/about`;
 ---
 
 <section class="py-20 border-y border-slate-200/80 bg-slate-50/50">

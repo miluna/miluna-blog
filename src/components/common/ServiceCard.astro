@@ -8,7 +8,6 @@ interface Props {
 }
 
 const { service, lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
-const isSpanish = lang === 'es';
 const t = translations[lang];
 const localizedService = t.services[service.id as keyof typeof t.services];
 
@@ -32,7 +31,7 @@ const colorMap = {
 };
 
 const styles = colorMap[service.badgeColor];
-const finalHref = isSpanish ? '/es/about' : '/en/about';
+const finalHref = `/${lang}/about`;
 ---
 
 <a

@@ -6,7 +6,6 @@ import { translations, type MultilingualProps } from '../../data/translations';
 interface Props extends MultilingualProps {}
 
 const { lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en' } = Astro.props;
-const isSpanish = lang === 'es';
 const t = translations[lang];
 ---
 
@@ -41,7 +40,7 @@ const t = translations[lang];
       <a href={BOOKING_URL} class="w-full sm:w-auto px-8 py-4 bg-slate-900 hover:bg-indigo-600 text-white font-semibold rounded-xl transition-all shadow-sm hover:shadow-md text-center">
         {t.contactMe}
       </a>
-      <a href={isSpanish ? "/es/about" : "/en/about"} class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-semibold rounded-xl transition-all shadow-xs text-center">
+      <a href={`/${lang}/about`} class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-semibold rounded-xl transition-all shadow-xs text-center">
         {t.learnMore}
       </a>
     </div>

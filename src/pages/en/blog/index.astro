@@ -22,7 +22,7 @@ const allTags = [...new Set(enPosts.flatMap(post => post.data.tags))];
 const description = t.blogDescription;
 ---
 
-<Layout title="Engineering Blog | Miluna Cloud Services" description={description}>
+<Layout lang={lang} title="Engineering Blog | Miluna Cloud Services" description={description}>
   <div class="relative py-16 overflow-hidden">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <BlogHeader lang={lang} title="Engineering Blog" badge="Technical Posts" description={description} />
