@@ -22,7 +22,7 @@ const t = translations[lang];
           {t.engineeringArticles}
         </h2>
       </div>
-      <a href={isSpanish ? "/es/blog" : "/blog"} class="text-xs font-bold uppercase tracking-wider text-indigo-600 hover:text-indigo-800 transition-colors inline-flex items-center gap-1">
+      <a href={isSpanish ? "/es/blog" : "/en/blog"} class="text-xs font-bold uppercase tracking-wider text-indigo-600 hover:text-indigo-800 transition-colors inline-flex items-center gap-1">
         {t.viewAllArticles}
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -33,7 +33,7 @@ const t = translations[lang];
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {posts.map((post) => {
         const idWithoutPrefix = post.id.replace(/^(en|es)\//, '');
-        const href = isSpanish ? `/es/blog/${idWithoutPrefix}` : `/blog/${idWithoutPrefix}`;
+        const href = isSpanish ? `/es/blog/${idWithoutPrefix}` : `/en/blog/${idWithoutPrefix}`;
 
         return (
           <article class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">

@@ -11,7 +11,7 @@ const isSpanish = lang === 'es';
 const t = translations[lang];
 
 const idWithoutPrefix = post.id.replace(/^(en|es)\//, '');
-const href = isSpanish ? `/es/blog/${idWithoutPrefix}` : `/blog/${idWithoutPrefix}`;
+const href = isSpanish ? `/es/blog/${idWithoutPrefix}` : `/en/blog/${idWithoutPrefix}`;
 ---
 
 <article 

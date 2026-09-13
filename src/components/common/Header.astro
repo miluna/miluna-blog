@@ -8,21 +8,21 @@ const lang = isSpanish ? 'es' : 'en';
 const t = translations[lang];
 
 // Compute EN and ES versions of the current page URL for language switcher
-let enPath = currentPath;
-let esPath = currentPath;
+let enPath = '/en/';
+let esPath = '/es/';
 
 if (isSpanish) {
-  // Strip '/es' or '/es/' from the start of the path
-  enPath = currentPath.replace(/^\/es(\/|$)/, '/');
-} else {
-  // Add '/es' prefix
-  esPath = currentPath === '/' ? '/es/' : `/es${currentPath}`;
+  enPath = currentPath.replace(/^\/es(\/|$)/, '/en$1');
+  esPath = currentPath;
+} else if (currentPath.startsWith('/en')) {
+  enPath = currentPath;
+  esPath = currentPath.replace(/^\/en(\/|$)/, '/es$1');
 }
 ---
 
 <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-200/80 transition-colors">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-    <a href={isSpanish ? "/es/" : "/"} class="flex items-center gap-2.5 group">
+    <a href={isSpanish ? "/es/" : "/en/"} class="flex items-center gap-2.5 group">
       <span class="w-8 h-8 rounded-lg bg-slate-900 text-white font-bold font-display flex items-center justify-center shadow-sm group-hover:bg-indigo-600 transition-colors">
         M
       </span>
@@ -32,16 +32,16 @@ if (isSpanish) {
     </a>
 
     <nav class="hidden md:flex items-center gap-8">
-      <a href={isSpanish ? "/es/" : "/"} class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+      <a href={isSpanish ? "/es/" : "/en/"} class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
         {t.home}
       </a>
-      <a href={isSpanish ? "/es/about" : "/about"} class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+      <a href={isSpanish ? "/es/about" : "/en/about"} class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
         {t.aboutMe}
       </a>
-      <a href={isSpanish ? "/es/case-studies" : "/case-studies"} class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+      <a href={isSpanish ? "/es/case-studies" : "/en/case-studies"} class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
         {t.caseStudies}
       </a>
-      <a href={isSpanish ? "/es/blog" : "/blog"} class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+      <a href={isSpanish ? "/es/blog" : "/en/blog"} class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
         {t.blog}
       </a>
 
@@ -67,16 +67,16 @@ if (isSpanish) {
 
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white/95 backdrop-blur-lg px-4 pt-2 pb-4 space-y-2">
-    <a href={isSpanish ? "/es/" : "/"} class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+    <a href={isSpanish ? "/es/" : "/en/"} class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">
       {t.home}
     </a>
-    <a href={isSpanish ? "/es/about" : "/about"} class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+    <a href={isSpanish ? "/es/about" : "/en/about"} class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">
       {t.aboutMe}
     </a>
-    <a href={isSpanish ? "/es/case-studies" : "/case-studies"} class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+    <a href={isSpanish ? "/es/case-studies" : "/en/case-studies"} class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">
       {t.caseStudies}
     </a>
-    <a href={isSpanish ? "/es/blog" : "/blog"} class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+    <a href={isSpanish ? "/es/blog" : "/en/blog"} class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors">
       {t.blog}
     </a>
 

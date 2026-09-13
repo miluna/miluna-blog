@@ -17,7 +17,7 @@ interface Props {
 const { lang, item } = Astro.props;
 const t = translations[lang];
 
-const blogUrl = lang === 'es' ? `/es/blog/${item.blogSlug}` : `/blog/${item.blogSlug}`;
+const blogUrl = lang === 'es' ? `/es/blog/${item.blogSlug}` : `/en/blog/${item.blogSlug}`;
 ---
 
 <a
