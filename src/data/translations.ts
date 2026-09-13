@@ -27,12 +27,12 @@ export const translations = {
     // Case Studies Items Data
     caseStudiesList: [
       {
-        id: "openbank",
-        companyName: "Openbank",
-        logo: "/openbank.webp",
-        title: "Bank Migration with 0% Downtime",
-        description: "We designed and executed the transition to RDS Aurora guaranteeing absolute transactional consistency and full 24/7 availability.",
-        blogSlug: "zero-downtime-banking-resilience"
+        id: "klarna",
+        companyName: "Klarna",
+        logo: "/klarna.webp",
+        title: "Migration to AWS Aurora without downtime",
+        description: "Real strategy migration from PostgreSQL to AWS Aurora without downtime.",
+        blogSlug: "zero-downtime-migration"
       },
       {
         id: "daimler",
@@ -221,12 +221,12 @@ export const translations = {
     // Case Studies Items Data
     caseStudiesList: [
       {
-        id: "openbank",
-        companyName: "Openbank",
-        logo: "/openbank.webp",
-        title: "Migración bancaria con 0% de Downtime",
-        description: "Diseñamos y ejecutamos la transición a RDS Aurora garantizando absoluta consistencia transaccional y disponibilidad total.",
-        blogSlug: "zero-downtime-banking-resilience"
+        id: "klarna",
+        companyName: "Klarna",
+        logo: "/klarna.webp",
+        title: "Migración a AWS Aurora sin downtime",
+        description: "Estrategia real de migración de PostgreSQL a AWS Aurora sin tiempo de inactividad.",
+        blogSlug: "zero-downtime-migration"
       },
       {
         id: "daimler",
