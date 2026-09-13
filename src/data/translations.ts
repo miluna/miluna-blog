@@ -126,8 +126,8 @@ export const translations = {
     filterByTopic: "Filter by Topic",
     allTopics: "All Topics",
     specializedConsulting: "Specialized Consulting?",
-    consultingAdDesc: "Infrastructure optimization, C++ compilers, distributed systems, and cloud architecture.",
-    contactMeArrow: "Book a meeting &rarr;",
+    consultingAdDesc: "Infrastructure optimization, distributed systems, and cloud architecture.",
+    contactMeArrow: "Book a meeting",
 
     // BlogPostCard
     byAuthor: "By",
@@ -320,8 +320,8 @@ export const translations = {
     filterByTopic: "Filtrar por Tema",
     allTopics: "Todos los Temas",
     specializedConsulting: "¿Asesoría Especializada?",
-    consultingAdDesc: "Optimización de infraestructura, compiladores C++, sistemas distribuidos y arquitectura en la nube.",
-    contactMeArrow: "Reservar una reunión &rarr;",
+    consultingAdDesc: "Optimización de infraestructura, sistemas distribuidos y arquitectura en la nube.",
+    contactMeArrow: "Reservar una reunión",
 
     // BlogPostCard
     byAuthor: "Por",
