@@ -27,28 +27,20 @@ export const translations = {
     // Case Studies Items Data
     caseStudiesList: [
       {
-        id: "openbank",
-        companyName: "Openbank",
-        logo: "/openbank.webp",
-        title: "Bank Migration with 0% Downtime",
-        description: "We designed and executed the transition to RDS Aurora guaranteeing absolute transactional consistency and full 24/7 availability.",
-        blogSlug: "zero-downtime-banking-resilience"
-      },
-      {
         id: "daimler",
         companyName: "Daimler",
         logo: "/daimler.webp",
-        title: "Safety-Critical Connected Car Systems",
-        description: "Architected fault-tolerant real-time IoT event processors for automotive telemetry with strict low-latency guarantees.",
-        blogSlug: "safety-critical-automotive-software"
+        title: "Hexagonal Architecture in Distributed Systems",
+        description: "Improving scalability of IT projects in the automotive sector.",
+        blogSlug: "hexagonal-architecture-in-distributed-systems"
       },
       {
-        id: "oru",
-        companyName: "Oru Studio",
-        logo: "/oru.webp",
-        title: "Scalable Game Server Infrastructure",
-        description: "Built high-throughput backend services and WebSocket orchestration handling concurrent player spikes without latency degradation.",
-        blogSlug: "engineering-scalable-game-backends"
+        id: "klarna",
+        companyName: "Klarna",
+        logo: "/klarna.webp",
+        title: "Migration to AWS Aurora without downtime",
+        description: "Real strategy migration from PostgreSQL to AWS Aurora without downtime.",
+        blogSlug: "zero-downtime-migration"
       }
     ],
 
@@ -221,28 +213,20 @@ export const translations = {
     // Case Studies Items Data
     caseStudiesList: [
       {
-        id: "openbank",
-        companyName: "Openbank",
-        logo: "/openbank.webp",
-        title: "Migración bancaria con 0% de Downtime",
-        description: "Diseñamos y ejecutamos la transición a RDS Aurora garantizando absoluta consistencia transaccional y disponibilidad total.",
-        blogSlug: "zero-downtime-banking-resilience"
-      },
-      {
         id: "daimler",
         companyName: "Daimler",
         logo: "/daimler.webp",
-        title: "Sistemas Críticos de Seguridad en Vehículos Conectados",
-        description: "Arquitectura de procesadores de eventos IoT tolerantes a fallos para telemetría automotriz con garantías de baja latencia.",
-        blogSlug: "safety-critical-automotive-software"
+        title: "Arquitectura hexagonal en sistemas distribuidos",
+        description: "Mejorando escalabilidad de proyectos de TI en el sector de automoción.",
+        blogSlug: "hexagonal-architecture-in-distributed-systems"
       },
       {
-        id: "oru",
-        companyName: "Oru Studio",
-        logo: "/oru.webp",
-        title: "Infraestructura Escalable de Servidores de Juego",
-        description: "Desarrollo de servicios backend y orquestación WebSocket de alto rendimiento para picos de jugadores simultáneos sin degradación de latencia.",
-        blogSlug: "engineering-scalable-game-backends"
+        id: "klarna",
+        companyName: "Klarna",
+        logo: "/klarna.webp",
+        title: "Migración a AWS Aurora sin downtime",
+        description: "Estrategia real de migración de PostgreSQL a AWS Aurora sin tiempo de inactividad.",
+        blogSlug: "zero-downtime-migration"
       }
     ],
 
