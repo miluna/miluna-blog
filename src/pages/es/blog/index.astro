@@ -60,6 +60,25 @@ const description = t.blogDescription;
     const filterBtns = document.querySelectorAll<HTMLButtonElement>('.tag-filter-btn');
     const postCards = document.querySelectorAll<HTMLElement>('.post-card');
     const emptyState = document.getElementById('no-posts-msg');
+    const dropdownToggle = document.getElementById('filter-dropdown-toggle') as HTMLButtonElement | null;
+    const dropdownContainer = document.getElementById('tag-filters-container') as HTMLElement | null;
+    const dropdownChevron = document.getElementById('filter-dropdown-chevron') as HTMLElement | null;
+
+    if (dropdownToggle && dropdownContainer) {
+      dropdownToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isHidden = dropdownContainer.classList.contains('hidden');
+        if (isHidden) {
+          dropdownContainer.classList.remove('hidden');
+          dropdownToggle.setAttribute('aria-expanded', 'true');
+          if (dropdownChevron) dropdownChevron.classList.add('rotate-180');
+        } else {
+          dropdownContainer.classList.add('hidden');
+          dropdownToggle.setAttribute('aria-expanded', 'false');
+          if (dropdownChevron) dropdownChevron.classList.remove('rotate-180');
+        }
+      });
+    }
 
     if (!filterBtns.length || !postCards.length) return;
 
