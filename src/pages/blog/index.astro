@@ -63,6 +63,7 @@ const description = t.blogDescription;
     const dropdownToggle = document.getElementById('filter-dropdown-toggle') as HTMLButtonElement | null;
     const dropdownContainer = document.getElementById('tag-filters-container') as HTMLElement | null;
     const dropdownChevron = document.getElementById('filter-dropdown-chevron') as HTMLElement | null;
+    const activeFilterCountEl = document.getElementById('active-filter-count') as HTMLElement | null;
 
     if (dropdownToggle && dropdownContainer) {
       dropdownToggle.addEventListener('click', (e) => {
@@ -118,6 +119,17 @@ const description = t.blogDescription;
 
       if (emptyState) {
         emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+
+      // Update active filter count in dropdown toggle button
+      if (activeFilterCountEl) {
+        if (selectedTag === 'all') {
+          activeFilterCountEl.classList.add('hidden');
+          activeFilterCountEl.textContent = '';
+        } else {
+          activeFilterCountEl.textContent = '(1)';
+          activeFilterCountEl.classList.remove('hidden');
+        }
       }
 
       // Sync URL parameter without page refresh

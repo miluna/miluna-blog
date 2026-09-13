@@ -22,7 +22,7 @@ const t = translations[lang];
     >
       <span class="flex items-center gap-1.5">
         <span>{t.filterByTopic}</span>
-        <span class="text-slate-500 font-semibold text-xs font-mono">({tags.length})</span>
+        <span id="active-filter-count" class="hidden text-slate-500 font-semibold text-xs font-mono"></span>
       </span>
       <svg
         id="filter-dropdown-chevron"
