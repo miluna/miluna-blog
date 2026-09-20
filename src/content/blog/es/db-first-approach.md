@@ -157,8 +157,8 @@ public class WithdrawMoneyUseCase {
     }
 
     public void execute(WithdrawMoneyCommand command) {
-        // 1. Cargamos el Agregado puro (sin subgrafos innecesarios)
-        Account account = accountRepository.findById(command.accountId())
+        // 1. Cargamos el Agregado puro (sin subgrafos innecesarios) y bloqueamos la fila para evitar condiciones de carrera
+        Account account = accountRepository.findByIdForUpdate(command.accountId())
             .orElseThrow(() -> new AccountNotFoundException(command.accountId()));
 
         // 2. Ejecutamos la regla de negocio dentro del Agregado
@@ -173,6 +173,52 @@ public class WithdrawMoneyUseCase {
 }
 ```
 
+¿Y cómo se ve la implementación del repositorio? Aquí es donde el enfoque DB-First brilla: el bloqueo pesimista es una instrucción SQL nativa (`FOR UPDATE`) y el guardado se realiza mediante un *upsert* atómico (`ON CONFLICT ... DO UPDATE`) en un único viaje de red, sin necesidad de *dirty checking* ni del `SELECT` previo que suele exigir JPA:
+
+```java
+@Repository
+public class JooqAccountRepository implements AccountRepository {
+
+    private final DSLContext dsl;
+
+    public JooqAccountRepository(DSLContext dsl) {
+        this.dsl = dsl;
+    }
+
+    @Override
+    public Optional<Account> findByIdForUpdate(AccountId id) {
+        return dsl.selectFrom(ACCOUNTS)
+            .where(ACCOUNTS.ID.eq(id.value()))
+            .forUpdate() // Bloqueo pesimista nativo a nivel de fila (SELECT ... FOR UPDATE)
+            .fetchOptional()
+            .map(this::toDomain); // Reconstitución limpia en memoria sin proxies de ORM
+    }
+
+    @Override
+    public void save(Account account) {
+        // Upsert atómico: inserta si es nuevo, actualiza si ya existe por ID
+        dsl.insertInto(ACCOUNTS)
+            .set(ACCOUNTS.ID, account.id().value())
+            .set(ACCOUNTS.HOLDER_NAME, account.holderName().value())
+            .set(ACCOUNTS.BALANCE, account.balance().amount())
+            .set(ACCOUNTS.CURRENCY, account.balance().currency())
+            .onConflict(ACCOUNTS.ID)
+            .doUpdate()
+            .set(ACCOUNTS.HOLDER_NAME, account.holderName().value())
+            .set(ACCOUNTS.BALANCE, account.balance().amount())
+            .execute();
+    }
+
+    private Account toDomain(AccountsRecord record) {
+        return Account.reconstitute(
+            new AccountId(record.getId()),
+            new HolderName(record.getHolderName()),
+            new Money(record.getBalance(), record.getCurrency())
+        );
+    }
+}
+```
+
 ---
 
 ## 5. Conclusiones y compromisos (*Trade-offs*)
@@ -180,6 +226,7 @@ public class WithdrawMoneyUseCase {
 Apostar por **DB-First + jOOQ + DDD** en mis desarrollos ha cambiado por completo la experiencia de construir servicios:
 
 * **Latencias predecibles:** Se eliminan de raíz las consultas N+1 accidentales y las serializaciones masivas provocadas por el *lazy loading*.
+* **Mínimos viajes de red (Zero-overhead roundtrips):** Cada interacción con la base de datos se reduce al número estrictamente necesario de consultas: en lecturas, una sola query proyecta exclusivamente las columnas requeridas; en escrituras, un *upsert* atómico erradica el clásico `SELECT` previo que los ORMs ejecutan para verificar si un ID ya existe.
 * **Dominio libre de dependencias:** Puedes probar cualquier regla de negocio o invariante con tests unitarios instantáneos en milisegundos, sin necesidad de levantar Spring Context ni bases de datos en memoria (H2).
 * **Migraciones como contrato:** Todo cambio en la base de datos queda auditado y versionado en SQL antes de tocar una sola línea de código Java.
 
